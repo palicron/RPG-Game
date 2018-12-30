@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/_Levels/Prototerrain/Prototerrain.unity
+  isLoaded: 1
+  isActive: 1
