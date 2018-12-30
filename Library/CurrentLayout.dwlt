@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 3}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 524}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 1007
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 524}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -135,10 +135,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 957
-  m_MinSize: {x: 613, y: 498}
-  m_MaxSize: {x: 18008, y: 14048}
+  m_MinSize: {x: 613, y: 474}
+  m_MaxSize: {x: 18008, y: 14024}
   vertical: 0
-  controlID: 162
+  controlID: 54
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -160,8 +160,8 @@ MonoBehaviour:
     y: 0
     width: 1072
     height: 957
-  m_MinSize: {x: 102, y: 224}
-  m_MaxSize: {x: 4002, y: 8024}
+  m_MinSize: {x: 102, y: 248}
+  m_MaxSize: {x: 4002, y: 8048}
   vertical: 1
   controlID: 55
 --- !u!114 &8
@@ -242,8 +242,8 @@ MonoBehaviour:
     y: 0
     width: 552
     height: 957
-  m_MinSize: {x: 234, y: 498}
-  m_MaxSize: {x: 10004, y: 14048}
+  m_MinSize: {x: 234, y: 474}
+  m_MaxSize: {x: 10004, y: 14024}
   vertical: 1
   controlID: 77
 --- !u!114 &11
@@ -265,8 +265,8 @@ MonoBehaviour:
     y: 0
     width: 552
     height: 487
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -393,9 +393,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.4233611, y: 0.2816274, z: -0.14034307, w: -0.8495618}
   m_Size:
-    m_Target: 9.739684
+    m_Target: 17.074604
     speed: 2
-    m_Value: 9.739684
+    m_Value: 17.074604
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1072,10 +1072,10 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 70e2ffff
-      m_LastClickedID: -7568
-      m_ExpandedIDs: 30f1ffffbafbffffe46600004a670000
+      scrollPos: {x: 0, y: 654}
+      m_SelectedIDs: 5ef3ffff
+      m_LastClickedID: -3234
+      m_ExpandedIDs: 5ef3ffffcefbffff68670000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1137,20 +1137,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_CameraUI
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/_CameraUI
+  - Assets
   m_LastFoldersGridSize: 16
-  m_LastProjectPath: C:\Users\ELGRA\Documents\RPG-Castel
+  m_LastProjectPath: C:\Users\ELGRA\Documents\RPG-Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: da460000
-    m_LastClickedID: 18138
-    m_ExpandedIDs: 00000000702b0000c0350000ae390000d03a0000383c0000464200007a470000724800008e4a0000d44e0000964f00008c540000fc5c0000325e0000805e000010630000a6630000ac7d0000ae7d0000b07d0000b27d0000b47d0000b67d0000b87d0000ba7d0000bc7d0000be7d0000c07d0000c27d0000c47d0000c67d0000c87d0000ca7d0000cc7d0000ce7d0000d07d0000d27d0000d47d0000d67d0000d87d0000da7d0000dc7d0000de7d0000e07d0000e27d0000e47d0000e67d0000e87d000000ca9a3b
+    m_SelectedIDs: 622b0000
+    m_LastClickedID: 11106
+    m_ExpandedIDs: 00000000602b0000622b0000b2350000a2390000c43a00002c3c00003a4200006e47000066480000824a0000c84e00007e540000ee5c0000245e0000725e00000263000098630000a87d0000aa7d0000ac7d0000ae7d0000b07d0000b27d0000b47d0000b67d0000b87d0000ba7d0000bc7d0000be7d0000c07d0000c27d0000c47d0000c67d0000c87d0000ca7d0000cc7d0000ce7d0000d07d0000d27d0000d47d0000d67d0000d87d0000da7d0000dc7d0000de7d0000e07d0000e27d0000e47d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1178,7 +1178,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000702b0000c0350000ae390000d03a0000383c0000464200007a470000724800008e4a0000d44e0000964f00008c540000fc5c0000325e0000805e000010630000a6630000ac7d0000ae7d0000b07d0000b27d0000b47d0000b67d0000b87d0000ba7d0000bc7d0000be7d0000c07d0000c27d0000c47d0000c67d0000c87d0000ca7d0000cc7d0000ce7d0000d07d0000d27d0000d47d0000d67d0000d87d0000da7d0000dc7d0000de7d0000e07d0000e27d0000e47d0000e67d0000e87d0000
+    m_ExpandedIDs: 00000000602b0000622b0000b2350000a2390000c43a00002c3c00003a4200006e47000066480000824a0000c84e00007e540000ee5c0000245e0000725e00000263000098630000a87d0000aa7d0000ac7d0000ae7d0000b07d0000b27d0000b47d0000b67d0000b87d0000ba7d0000bc7d0000be7d0000c07d0000c27d0000c47d0000c67d0000c87d0000ca7d0000cc7d0000ce7d0000d07d0000d27d0000d47d0000d67d0000d87d0000da7d0000dc7d0000de7d0000e07d0000e27d0000e47d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
