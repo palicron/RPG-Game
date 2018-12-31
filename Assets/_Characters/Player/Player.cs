@@ -19,17 +19,21 @@ namespace RPG.Character
 		
 		//TODO Temporarily serializi for debug
 		[SerializeField] SpecialAbilityConfig[] abilities;
-		
+		AudioSource audioSource;
 		private Animator animator;
 		//[SerializeField] GameObject WeaponnSocket;
 		float currentHelhPoints = 100f;
 
+	
+		[SerializeField] AudioClip[] DamgeSounds;
+		[SerializeField] AudioClip[] DeathSounds;
 		CameraRaycaster cameraRaycaster;
 		float lastHittime = 0;
 		private void Start()
 		{
 			RegisterForMouseClik();
 			currentHelhPoints = maxHealhPoints;
+			audioSource = GetComponent<AudioSource>();
 			PutWeaponInHand();
 			SetupRunTimeAnimator();
 			abilities[0].AttachComponentTo(this.gameObject);
@@ -127,6 +131,9 @@ namespace RPG.Character
 			}
 			else
 			{
+				audioSource.Stop();
+				audioSource.clip = DamgeSounds[UnityEngine.Random.Range(0, DamgeSounds.Length)];
+				audioSource.Play();
 				ReduceHealt(damage);
 			}
 				
@@ -136,9 +143,11 @@ namespace RPG.Character
 
 		IEnumerator KillPlayer()
 		{
-			Debug.Log("DeathSOund");
+			audioSource.Stop();
+			audioSource.clip = DeathSounds[UnityEngine.Random.Range(0, DeathSounds.Length)];
+			audioSource.Play();
 			Debug.Log("Deathaniamtion");
-			yield return new WaitForSecondsRealtime(2f);//todo use audiclipo lenth
+			yield return new WaitForSecondsRealtime(audioSource.clip.length+0.1f);//todo use audiclipo lenth
 			SceneManager.LoadSceneAsync(0);
 		}
 		private void ReduceHealt(float damage)

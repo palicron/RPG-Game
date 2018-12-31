@@ -20,7 +20,7 @@ namespace RPG.Character
 		[SerializeField] Vector3 AimOffSet = new Vector3(0, 1f, 0);
 		ThirdPersonCharacter thirdPersonCharacter = null;
 		AICharacterControl aiCharacterControl = null;
-		GameObject player = null;
+		Player player = null;
 		bool isAttacking = false;
 
 		public float healthAsPercentage
@@ -34,13 +34,18 @@ namespace RPG.Character
 
 		private void Start()
 		{
-			player = GameObject.FindGameObjectWithTag("Player");
+			player = FindObjectOfType<Player>();
 			thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
 			aiCharacterControl = GetComponent<AICharacterControl>();
 			currentHelhPoints = maxHealhPoints;
 		}
 		private void Update()
 		{
+			if(player.healthAsPercentage <=Mathf.Epsilon)
+			{
+				StopAllCoroutines();
+				Destroy(this);
+			}
 			float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
 
