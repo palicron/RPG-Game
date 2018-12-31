@@ -1932,7 +1932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyBar: {fileID: 1883625579}
   maxEnergyPoint: 100
-  regenPointsPerSecond: 1
+  regenPointsPerSecond: 7
 --- !u!4 &385888362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4561745322221106, guid: ad9dd12283d497c4a93c5a94ee7d9cf7,
@@ -3686,6 +3686,56 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224702312777618788, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35936
+      objectReference: {fileID: 0}
+    - target: {fileID: 224702312777618788, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.35936
+      objectReference: {fileID: 0}
+    - target: {fileID: 224702312777618788, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.35936
+      objectReference: {fileID: 0}
+    - target: {fileID: 224702312777618788, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 443
+      objectReference: {fileID: 0}
+    - target: {fileID: 224702312777618788, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -406
+      objectReference: {fileID: 0}
+    - target: {fileID: 224254424594532282, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35936
+      objectReference: {fileID: 0}
+    - target: {fileID: 224254424594532282, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.35936
+      objectReference: {fileID: 0}
+    - target: {fileID: 224254424594532282, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.35936
+      objectReference: {fileID: 0}
+    - target: {fileID: 224254424594532282, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 443
+      objectReference: {fileID: 0}
+    - target: {fileID: 224254424594532282, guid: 75a43cca039264395b99698681e52275,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -406
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75a43cca039264395b99698681e52275, type: 3}
 --- !u!4 &925334551 stripped
@@ -5173,15 +5223,15 @@ RectTransform:
   m_GameObject: {fileID: 1182227517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35936, y: 0.35936, z: 0.35936}
   m_Children: []
   m_Father: {fileID: 2098100823}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19536968, y: 0}
   m_AnchorMax: {x: 0.80100006, y: 0}
-  m_AnchoredPosition: {x: 3, y: 85}
-  m_SizeDelta: {x: -73, y: 35}
+  m_AnchoredPosition: {x: -407, y: 422}
+  m_SizeDelta: {x: -68, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1182227519
 MonoBehaviour:
@@ -8547,15 +8597,15 @@ RectTransform:
   m_GameObject: {fileID: 1883625576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35936, y: 0.35936, z: 0.35936}
   m_Children: []
   m_Father: {fileID: 2098100823}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.19536968, y: 0}
   m_AnchorMax: {x: 0.80100006, y: 0}
-  m_AnchoredPosition: {x: 3, y: 85}
-  m_SizeDelta: {x: -73, y: 35}
+  m_AnchoredPosition: {x: -407, y: 422}
+  m_SizeDelta: {x: -68, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1883625578
 MonoBehaviour:
@@ -9725,12 +9775,17 @@ PrefabInstance:
     - target: {fileID: 8523058808048432407, guid: 0d5b2460e715a6d45a8a569e08dea01c,
         type: 3}
       propertyPath: damagePerShot
-      value: -25
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8523058808048432407, guid: 0d5b2460e715a6d45a8a569e08dea01c,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8523058808048432407, guid: 0d5b2460e715a6d45a8a569e08dea01c,
+        type: 3}
+      propertyPath: maxHealhPoints
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8633491862176239043, guid: 0d5b2460e715a6d45a8a569e08dea01c,
         type: 3}
