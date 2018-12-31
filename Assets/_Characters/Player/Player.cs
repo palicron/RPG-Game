@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 using RPG.CameraUI; //TODO consider RE-write
 using RPG.Core;
 using RPG.Weapons;
-
+using UnityEngine.SceneManagement;
 namespace RPG.Character
 {
 	public class Player : MonoBehaviour, IDamagaeble
@@ -119,9 +119,32 @@ namespace RPG.Character
 
 		public void TakeDamage(float damage)
 		{
+			if (currentHelhPoints - damage <= 0)
+			{
+				ReduceHealt(damage);
+				StartCoroutine(KillPlayer());
+			
+			}
+			else
+			{
+				ReduceHealt(damage);
+			}
+				
+		
+			
+		}
+
+		IEnumerator KillPlayer()
+		{
+			Debug.Log("DeathSOund");
+			Debug.Log("Deathaniamtion");
+			yield return new WaitForSecondsRealtime(2f);//todo use audiclipo lenth
+			SceneManager.LoadSceneAsync(0);
+		}
+		private void ReduceHealt(float damage)
+
+		{
 			currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
-			//if (currentHelhPoints <= 0)
-			//Destroy(gameObject);
 		}
 	}
 }

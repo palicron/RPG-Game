@@ -15,8 +15,8 @@ namespace RPG.CameraUI
 		[SerializeField] Texture2D targetCursor = null;
 		[SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 		float maxRaycastDepth = 100f; // Hard coded value
-									
-	
+
+		Rect screemRect = new Rect(0, 0,Screen.width,Screen.height);//TODO determine for rescale window
 
 		public delegate void OnMouseOverTerrain(Vector3 destination); // declare new delegate type
 		public event OnMouseOverTerrain OnMouseOverPotetiallWalkable;
@@ -26,7 +26,7 @@ namespace RPG.CameraUI
 
 
 	
-		void Update()
+		void Update() 
 		{
 			// Check if pointer is over an interactable UI element
 			if (EventSystem.current.IsPointerOverGameObject())
@@ -44,13 +44,18 @@ namespace RPG.CameraUI
 
 		void PerformRayCast()
 		{
+			if (screemRect.Contains(Input.mousePosition))
+			{
+
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			if (RaycastFOrEnemy(ray)) { return; }
 			if (RaycastForWalkable(ray)) { return; }
-			
+			}
+
 		}
 		private bool RaycastFOrEnemy(Ray ray)
 		{
+			
 			RaycastHit hitInfo;
 			Physics.Raycast(ray, out hitInfo, maxRaycastDepth);
 			var gameObjectHit = hitInfo.collider.gameObject;
