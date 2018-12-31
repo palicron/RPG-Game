@@ -11,7 +11,8 @@ namespace RPG.Character
 {
 	public class Player : MonoBehaviour, IDamagaeble
 	{
-		
+		const string ATTACK_TRIGGER = "Attack";
+		const string DEATH_TRIGGER = "Death";
 		[SerializeField] float maxHealhPoints = 100f;
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] Weapon weaponinUse;
@@ -107,7 +108,7 @@ namespace RPG.Character
 		
 			if (Time.time - lastHittime > weaponinUse.MinTimeBetween)
 			{
-				animator.SetTrigger("Attack"); //TODO maeka const
+				animator.SetTrigger(ATTACK_TRIGGER); //TODO maeka const
 				enemy.TakeDamage(baseDamage);
 				lastHittime = Time.time;
 			}
@@ -143,15 +144,16 @@ namespace RPG.Character
 
 		IEnumerator KillPlayer()
 		{
+			animator.SetTrigger(DEATH_TRIGGER);
+
 			audioSource.Stop();
 			audioSource.clip = DeathSounds[UnityEngine.Random.Range(0, DeathSounds.Length)];
 			audioSource.Play();
-			Debug.Log("Deathaniamtion");
+			
 			yield return new WaitForSecondsRealtime(audioSource.clip.length+0.1f);//todo use audiclipo lenth
 			SceneManager.LoadSceneAsync(0);
 		}
 		private void ReduceHealt(float damage)
-
 		{
 			currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
 		}
