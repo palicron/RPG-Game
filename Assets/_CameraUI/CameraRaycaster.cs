@@ -16,7 +16,7 @@ namespace RPG.CameraUI
 		[SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 		float maxRaycastDepth = 100f; // Hard coded value
 
-		Rect screemRect = new Rect(0, 0,Screen.width,Screen.height);//TODO determine for rescale window
+		Rect screemRectOncontruction = new Rect(0, 0,Screen.width,Screen.height);//TODO determine for rescale window
 
 		public delegate void OnMouseOverTerrain(Vector3 destination); // declare new delegate type
 		public event OnMouseOverTerrain OnMouseOverPotetiallWalkable;
@@ -44,7 +44,7 @@ namespace RPG.CameraUI
 
 		void PerformRayCast()
 		{
-			if (screemRect.Contains(Input.mousePosition))
+			if (screemRectOncontruction.Contains(Input.mousePosition))
 			{
 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
