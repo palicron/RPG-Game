@@ -94,6 +94,7 @@
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Editor\Utils\EditorResources.cs" />
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Editor\Utils\FxStyles.cs" />
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Editor\Utils\ReflectionUtils.cs" />
+    <Compile Include="Assets\Editor\Instant Screenshot\ScreenshotTaker.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
