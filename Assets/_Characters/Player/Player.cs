@@ -25,14 +25,18 @@ namespace RPG.Character
 		private Animator animator;
 		//[SerializeField] GameObject WeaponnSocket;
 		float currentHelhPoints = 100f;
-
+		[Range(0f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f; 
+		[SerializeField] float criticalHitMultiplier = 1.25f;
 
 		[SerializeField] AudioClip[] DamgeSounds;
 		[SerializeField] AudioClip[] DeathSounds;
 		CameraRaycaster cameraRaycaster;
+		[SerializeField] ParticleSystem critParticle=null;
+
 		float lastHittime = 0;
 		private void Start()
 		{
+			
 			RegisterForMouseClik();
 			currentHelhPoints = maxHealhPoints;
 			audioSource = GetComponent<AudioSource>();
@@ -113,7 +117,7 @@ namespace RPG.Character
 		void MouseOverEnemy(Enemy enemy)
 		{
 			CurrentEnemy = enemy;
-			if (Input.GetMouseButton(0) && IsTargetInrange(enemy.gameObject))
+			if (Input.GetMouseButtonDown(0) && IsTargetInrange(enemy.gameObject))
 			{
 				AttackTarget();
 			}
@@ -141,15 +145,31 @@ namespace RPG.Character
 			if (Time.time - lastHittime > weaponinUse.MinTimeBetween)
 			{
 				animator.SetTrigger(ATTACK_TRIGGER); //TODO maeka const
-				CurrentEnemy.TakeDamage(baseDamage);
+				CurrentEnemy.TakeDamage(CalculateDamage());
 				lastHittime = Time.time;
 			}
+		}
+
+		private float CalculateDamage()
+		{
+			bool isCriticalHit = UnityEngine.Random.Range(0f, 1f) <= criticalHitChance;
+			float damagaBeforeCrit = baseDamage + weaponinUse.GetAdditinalDamage();
+			if(isCriticalHit)
+			{
+				critParticle.Play();
+				return damagaBeforeCrit * criticalHitMultiplier;
+			}
+			else
+		    {
+				return damagaBeforeCrit;
+			}
+			
 		}
 
 		private bool IsTargetInrange(GameObject target)
 		{
 			float disttanceTotarget = (target.transform.position - transform.position).magnitude;
-
+		
 			return disttanceTotarget <= weaponinUse.MaxAttackRange;
 
 		}
