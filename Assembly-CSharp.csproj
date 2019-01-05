@@ -78,6 +78,8 @@
     <Compile Include="Assets\_Characters\Special Abilities\Area of Effect\AreaOfEffectConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackConfig.cs" />
+    <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelftHealBehavior.cs" />
+    <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelftHealConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\SpecialAbilityConfig.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
     <Compile Include="Assets\_Core\IDamageable.cs" />

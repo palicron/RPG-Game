@@ -23,7 +23,16 @@ namespace RPG.Character
 		public void Use(AbilityUseParams useParams)
 		{
 			useParams.target.TakeDamage(useParams.baseDamage + config.GetExtraDamage());
-			
+			PlayParticalEffect();
+		}
+		private void PlayParticalEffect()
+		{
+
+			var prefab = GameObject.Instantiate(config.GetParticlePrefab(), transform.position, Quaternion.identity);
+			ParticleSystem VfxParticleSystem = prefab.GetComponent<ParticleSystem>();
+			VfxParticleSystem.Play();
+			GameObject.Destroy(prefab, VfxParticleSystem.main.duration);
+
 		}
 
 		public void setConfing(PowerAttackConfig config)

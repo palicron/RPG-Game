@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Core;
+using System;
+
 namespace RPG.Character
 {
 	public class AreaOfEffectBehavior : MonoBehaviour, ISpecialAbility
@@ -9,6 +11,22 @@ namespace RPG.Character
 		AreaOfEffectConfig config;
 
 		public void Use(AbilityUseParams useParams)
+		{
+			DealRadialDamage(useParams);
+			PlayParticalEffect();
+		}
+
+		private void PlayParticalEffect()
+		{
+
+			var prefab = GameObject.Instantiate(config.GetParticlePrefab(), transform.position, Quaternion.identity);
+			ParticleSystem VfxParticleSystem = prefab.GetComponent<ParticleSystem>();
+			VfxParticleSystem.Play();
+			GameObject.Destroy(prefab, VfxParticleSystem.main.duration);
+
+		}
+
+		private void DealRadialDamage(AbilityUseParams useParams)
 		{
 			//static sphere
 			RaycastHit[] hits = Physics.SphereCastAll(
@@ -19,13 +37,8 @@ namespace RPG.Character
 
 			foreach (RaycastHit hit in hits)
 			{
-
-				
-			  var damageable = hit.collider.gameObject.GetComponent<IDamagaeble>();
-				
-				
-
-				if(damageable != null && !hit.collider.gameObject.tag.Equals("Player"))
+				var damageable = hit.collider.gameObject.GetComponent<IDamagaeble>();
+				if (damageable != null && !hit.collider.gameObject.tag.Equals("Player"))
 				{
 					float damageTodeal = useParams.baseDamage + config.GetExtraDamage();
 					damageable.TakeDamage(damageTodeal);

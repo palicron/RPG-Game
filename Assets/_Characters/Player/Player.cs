@@ -17,7 +17,8 @@ namespace RPG.Character
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] Weapon weaponinUse;
 		[SerializeField] AnimatorOverrideController animatorOverrideController;
-		
+
+		Enemy CurrentEnemy=null;
 		//TODO Temporarily serializi for debug
 		[SerializeField] SpecialAbilityConfig[] abilities;
 		AudioSource audioSource;
@@ -37,7 +38,37 @@ namespace RPG.Character
 			audioSource = GetComponent<AudioSource>();
 			PutWeaponInHand();
 			SetupRunTimeAnimator();
-			abilities[0].AttachComponentTo(this.gameObject);
+			AttachInitialAbilities();
+			
+		}
+
+		private void AttachInitialAbilities()
+		{
+			for(int i =0;i<abilities.Length;i++)
+			{
+				abilities[i].AttachComponentTo(this.gameObject);
+			}
+		}
+
+		private void Update()
+		{
+			if(healthAsPercentage>Mathf.Epsilon)
+			{
+				ScanForAbilityKeyPress();
+			}
+		}
+
+		private void ScanForAbilityKeyPress()
+		{
+			if(Input.GetKeyDown(KeyCode.Alpha1))
+			{
+				AttempotsSpecialAbility(1);
+
+			}
+			else if (Input.GetKeyDown(KeyCode.Alpha2))
+			{
+				AttempotsSpecialAbility(2);
+			}
 		}
 
 		private void SetupRunTimeAnimator()
@@ -81,35 +112,36 @@ namespace RPG.Character
 
 		void MouseOverEnemy(Enemy enemy)
 		{
+			CurrentEnemy = enemy;
 			if(Input.GetMouseButton(0) && IsTargetInrange(enemy.gameObject))
 			{
-				AttackTarget(enemy);
+				AttackTarget();
 			}
 			else if(Input.GetMouseButtonDown(1))
 			{
-				AttempotsSpecialAbility(0,enemy);
+				AttempotsSpecialAbility(0);
 			}
 		}
-
-		private void AttempotsSpecialAbility(int abilittIndex,Enemy enemy)
+	
+		private void AttempotsSpecialAbility(int abilittIndex)
 		{
 			var energyComponent = GetComponent<Energy>();
 			float energyCost = abilities[abilittIndex].GetEnergyCost();
 			if (energyComponent.IsEnergyAvailable(10f))//TODO read from ability
 			{
 				energyComponent.ConsumeEnergy(energyCost);
-				var abilityParams = new AbilityUseParams(enemy, baseDamage);
+				var abilityParams = new AbilityUseParams(CurrentEnemy, baseDamage);
 				abilities[abilittIndex].Use(abilityParams);
 			}
 		}
 
-		private void AttackTarget(Enemy enemy)
+		private void AttackTarget()
 		{
 		
 			if (Time.time - lastHittime > weaponinUse.MinTimeBetween)
 			{
 				animator.SetTrigger(ATTACK_TRIGGER); //TODO maeka const
-				enemy.TakeDamage(baseDamage);
+				CurrentEnemy.TakeDamage(baseDamage);
 				lastHittime = Time.time;
 			}
 		}
@@ -132,9 +164,13 @@ namespace RPG.Character
 			}
 			else
 			{
-				audioSource.Stop();
-				audioSource.clip = DamgeSounds[UnityEngine.Random.Range(0, DamgeSounds.Length)];
-				audioSource.Play();
+				if(damage>0)
+				{
+					audioSource.Stop();
+					audioSource.clip = DamgeSounds[UnityEngine.Random.Range(0, DamgeSounds.Length)];
+					audioSource.Play();
+				}
+			
 				ReduceHealt(damage);
 			}
 				
