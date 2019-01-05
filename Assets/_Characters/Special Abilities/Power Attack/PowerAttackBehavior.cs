@@ -9,17 +9,7 @@ namespace RPG.Character
 	{
 		PowerAttackConfig config;
 
-		// Start is called before the first frame update
-		void Start()
-		{
-			print("Power attack behacior attach to " + gameObject.name);
-		}
 
-		// Update is called once per frame
-		void Update()
-		{
-
-		}
 		public void Use(AbilityUseParams useParams)
 		{
 			useParams.target.TakeDamage(useParams.baseDamage + config.GetExtraDamage());

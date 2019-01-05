@@ -18,7 +18,7 @@ namespace RPG.Character
 		[SerializeField] Weapon weaponinUse;
 		[SerializeField] AnimatorOverrideController animatorOverrideController;
 
-		Enemy CurrentEnemy=null;
+		Enemy CurrentEnemy = null;
 		//TODO Temporarily serializi for debug
 		[SerializeField] SpecialAbilityConfig[] abilities;
 		AudioSource audioSource;
@@ -26,7 +26,7 @@ namespace RPG.Character
 		//[SerializeField] GameObject WeaponnSocket;
 		float currentHelhPoints = 100f;
 
-	
+
 		[SerializeField] AudioClip[] DamgeSounds;
 		[SerializeField] AudioClip[] DeathSounds;
 		CameraRaycaster cameraRaycaster;
@@ -39,12 +39,12 @@ namespace RPG.Character
 			PutWeaponInHand();
 			SetupRunTimeAnimator();
 			AttachInitialAbilities();
-			
+
 		}
 
 		private void AttachInitialAbilities()
 		{
-			for(int i =0;i<abilities.Length;i++)
+			for (int i = 0; i < abilities.Length; i++)
 			{
 				abilities[i].AttachComponentTo(this.gameObject);
 			}
@@ -52,7 +52,7 @@ namespace RPG.Character
 
 		private void Update()
 		{
-			if(healthAsPercentage>Mathf.Epsilon)
+			if (healthAsPercentage > Mathf.Epsilon)
 			{
 				ScanForAbilityKeyPress();
 			}
@@ -60,7 +60,7 @@ namespace RPG.Character
 
 		private void ScanForAbilityKeyPress()
 		{
-			if(Input.GetKeyDown(KeyCode.Alpha1))
+			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
 				AttempotsSpecialAbility(1);
 
@@ -113,16 +113,16 @@ namespace RPG.Character
 		void MouseOverEnemy(Enemy enemy)
 		{
 			CurrentEnemy = enemy;
-			if(Input.GetMouseButton(0) && IsTargetInrange(enemy.gameObject))
+			if (Input.GetMouseButton(0) && IsTargetInrange(enemy.gameObject))
 			{
 				AttackTarget();
 			}
-			else if(Input.GetMouseButtonDown(1))
+			else if (Input.GetMouseButtonDown(1))
 			{
 				AttempotsSpecialAbility(0);
 			}
 		}
-	
+
 		private void AttempotsSpecialAbility(int abilittIndex)
 		{
 			var energyComponent = GetComponent<Energy>();
@@ -137,7 +137,7 @@ namespace RPG.Character
 
 		private void AttackTarget()
 		{
-		
+
 			if (Time.time - lastHittime > weaponinUse.MinTimeBetween)
 			{
 				animator.SetTrigger(ATTACK_TRIGGER); //TODO maeka const
@@ -146,36 +146,38 @@ namespace RPG.Character
 			}
 		}
 
-		private bool IsTargetInrange( GameObject target)
+		private bool IsTargetInrange(GameObject target)
 		{
 			float disttanceTotarget = (target.transform.position - transform.position).magnitude;
 
 			return disttanceTotarget <= weaponinUse.MaxAttackRange;
-			
+
 		}
 
 		public void TakeDamage(float damage)
 		{
 			if (currentHelhPoints - damage <= 0)
 			{
-				ReduceHealt(damage);
+
+				currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
 				StartCoroutine(KillPlayer());
-			
+
 			}
 			else
 			{
-				if(damage>0)
-				{
-					audioSource.Stop();
-					audioSource.clip = DamgeSounds[UnityEngine.Random.Range(0, DamgeSounds.Length)];
-					audioSource.Play();
-				}
-			
-				ReduceHealt(damage);
+
+				audioSource.Stop();
+				audioSource.clip = DamgeSounds[UnityEngine.Random.Range(0, DamgeSounds.Length)];
+				audioSource.Play();
+
+				currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
 			}
-				
-		
-			
+
+
+		}
+		public void Heal(float points)
+		{
+			currentHelhPoints = Mathf.Clamp(currentHelhPoints + points, 0f, maxHealhPoints);
 		}
 
 		IEnumerator KillPlayer()
@@ -185,13 +187,10 @@ namespace RPG.Character
 			audioSource.Stop();
 			audioSource.clip = DeathSounds[UnityEngine.Random.Range(0, DeathSounds.Length)];
 			audioSource.Play();
-			
-			yield return new WaitForSecondsRealtime(audioSource.clip.length+0.1f);//todo use audiclipo lenth
+
+			yield return new WaitForSecondsRealtime(audioSource.clip.length + 0.1f);//todo use audiclipo lenth
 			SceneManager.LoadSceneAsync(0);
 		}
-		private void ReduceHealt(float damage)
-		{
-			currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
-		}
+
 	}
 }

@@ -8,13 +8,18 @@ public class SelftHealBehavior : MonoBehaviour, ISpecialAbility
 {
 		SelftHealConfig config;
 		Player player;
+		AudioSource audioSource = null;
 		private void Start()
 		{
 			player = FindObjectOfType<Player>();
+			audioSource = GetComponent<AudioSource>();
 		}
 		public void Use(AbilityUseParams useParams)
 		{
-			player.TakeDamage(-config.GetExtraHeal());
+			player.Heal(config.GetExtraHeal());
+			audioSource.Stop();
+			audioSource.clip = config.GetAudioCLip();
+			audioSource.Play();
 			PlayParticalEffect();
 		}
 
@@ -22,6 +27,7 @@ public class SelftHealBehavior : MonoBehaviour, ISpecialAbility
 		{
 
 			var prefab = GameObject.Instantiate(config.GetParticlePrefab(), transform.position, Quaternion.identity);
+			prefab.transform.parent = this.transform;
 			ParticleSystem VfxParticleSystem = prefab.GetComponent<ParticleSystem>();
 			VfxParticleSystem.Play();
 			GameObject.Destroy(prefab, VfxParticleSystem.main.duration);
