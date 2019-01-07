@@ -21,7 +21,7 @@ namespace RPG.Character
 		[SerializeField] float energyCost = 10f;
 		[SerializeField] GameObject particlePrefab = null;
 		[SerializeField] AudioClip Sound=null;
-		protected ISpecialAbility behaviour;
+		protected AbilityBehavior behaviour;
 
 		
 
@@ -47,9 +47,5 @@ namespace RPG.Character
 		}
 	}
 
-	public interface ISpecialAbility
-	{
-		void Use(AbilityUseParams useParams);
-	}
 
 }

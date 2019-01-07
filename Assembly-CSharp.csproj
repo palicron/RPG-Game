@@ -74,6 +74,7 @@
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerMovement.cs" />
     <Compile Include="Assets\_Characters\Player\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area of Effect\AreaOfEffectBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area of Effect\AreaOfEffectConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Power Attack\PowerAttackBehavior.cs" />

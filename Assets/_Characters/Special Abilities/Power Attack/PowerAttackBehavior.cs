@@ -5,12 +5,12 @@ using UnityEngine;
 namespace RPG.Character
 {
 
-	public class PowerAttackBehavior : MonoBehaviour, ISpecialAbility
+	public class PowerAttackBehavior : AbilityBehavior
 	{
 		PowerAttackConfig config;
 
 
-		public void Use(AbilityUseParams useParams)
+		public override void Use(AbilityUseParams useParams)
 		{
 			useParams.target.TakeDamage(useParams.baseDamage + config.GetExtraDamage());
 			PlayParticalEffect();

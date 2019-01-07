@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace RPG.Character
 { 
-public class SelftHealBehavior : MonoBehaviour, ISpecialAbility
-{
+public class SelftHealBehavior : AbilityBehavior
+	{
 		SelftHealConfig config;
 		Player player;
 		AudioSource audioSource = null;
@@ -14,7 +14,7 @@ public class SelftHealBehavior : MonoBehaviour, ISpecialAbility
 			player = FindObjectOfType<Player>();
 			audioSource = GetComponent<AudioSource>();
 		}
-		public void Use(AbilityUseParams useParams)
+		public override void Use(AbilityUseParams useParams)
 		{
 			player.Heal(config.GetExtraHeal());
 			audioSource.Stop();
