@@ -23,10 +23,19 @@ namespace RPG.Character
 		[SerializeField] AudioClip[] audioClips = null;
 		protected AbilityBehavior behaviour;
 
+		public abstract AbilityBehavior getBehaviorCOmponent(GameObject objetToAttachTo);
+
+
+
+		 public void AttachAbilityTo(GameObject GoToAttach)
+		{
+			AbilityBehavior behaviorComponent = getBehaviorCOmponent(GoToAttach);
+			behaviorComponent.setConfing(this);
+			behaviour = behaviorComponent;
+		}
 		
 
-		abstract public void AttachComponentTo(GameObject GoToAttach);
-		
+
 		public void Use(AbilityUseParams useParams)
 		{
 			behaviour.Use(useParams);

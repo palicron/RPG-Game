@@ -13,11 +13,10 @@ namespace RPG.Character
 		[SerializeField] float damageToEachTarget = 5f;
 
 
-		public override void AttachComponentTo(GameObject GoToAttach)
+
+		public override AbilityBehavior getBehaviorCOmponent(GameObject objetToAttachTo)
 		{
-			var behaviorComponent = GoToAttach.AddComponent<AreaOfEffectBehavior>();
-			behaviorComponent.setConfing(this);
-			behaviour = behaviorComponent;
+			return objetToAttachTo.AddComponent<AreaOfEffectBehavior>();
 		}
 		public float GetExtraDamage()
 		{

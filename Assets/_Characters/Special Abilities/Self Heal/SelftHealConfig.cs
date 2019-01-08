@@ -10,16 +10,15 @@ namespace RPG.Character
 		[Header("Power Attack Specifics")]
 		[SerializeField] float extraHeal = 10f;
 
-		public override void AttachComponentTo(GameObject GoToAttach)
-		{
-			var behaviorComponent = GoToAttach.AddComponent<SelftHealBehavior>();
-			behaviorComponent.setConfing(this);
-			behaviour = behaviorComponent;
-		}
 
 		public float GetExtraHeal()
 		{
 			return extraHeal;
+		}
+
+		public override AbilityBehavior getBehaviorCOmponent(GameObject objetToAttachTo)
+		{
+			return objetToAttachTo.AddComponent<SelftHealBehavior>();
 		}
 	}
 
