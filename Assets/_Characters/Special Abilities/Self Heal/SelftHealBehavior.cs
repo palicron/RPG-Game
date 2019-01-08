@@ -6,7 +6,7 @@ namespace RPG.Character
 { 
 public class SelftHealBehavior : AbilityBehavior
 	{
-		SelftHealConfig config;
+	
 		Player player;
 		AudioSource audioSource = null;
 		private void Start()
@@ -16,23 +16,14 @@ public class SelftHealBehavior : AbilityBehavior
 		}
 		public override void Use(AbilityUseParams useParams)
 		{
-			player.Heal(config.GetExtraHeal());
+			player.Heal((config as SelftHealConfig).GetExtraHeal());
 			audioSource.Stop();
 			audioSource.clip = config.GetAudioCLip();
 			audioSource.Play();
-			PlayParticalEffect();
+			PlayParticalEffect(transform.position,true);
 		}
 
-		private void PlayParticalEffect()
-		{
 
-			var prefab = GameObject.Instantiate(config.GetParticlePrefab(), transform.position, Quaternion.identity);
-			prefab.transform.parent = this.transform;
-			ParticleSystem VfxParticleSystem = prefab.GetComponent<ParticleSystem>();
-			VfxParticleSystem.Play();
-			GameObject.Destroy(prefab, VfxParticleSystem.main.duration);
-
-		}
 
 		public void setConfing(SelftHealConfig config)
 		{

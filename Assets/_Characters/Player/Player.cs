@@ -133,6 +133,7 @@ namespace RPG.Character
 			float energyCost = abilities[abilittIndex].GetEnergyCost();
 			if (energyComponent.IsEnergyAvailable(10f))//TODO read from ability
 			{
+			
 				energyComponent.ConsumeEnergy(energyCost);
 				var abilityParams = new AbilityUseParams(CurrentEnemy, baseDamage);
 				abilities[abilittIndex].Use(abilityParams);

@@ -75,7 +75,7 @@ namespace RPG.CameraUI
 		private bool RaycastForWalkable(Ray ray)
 		{
 			RaycastHit hitInfo;
-		
+
 			LayerMask potentialyWalkableLayer = 1 << WALKABLE_LAYER;
 			bool potentiallyWalkableHit = Physics.Raycast(ray, out hitInfo, maxRaycastDepth, potentialyWalkableLayer);
 			MoseInstaceposition = hitInfo.point;
