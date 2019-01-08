@@ -15,6 +15,7 @@ namespace RPG.Character
 			DefineMousePosition();
 			DealRadialDamage(useParams);
 			PlayParticalEffect(MousepOsition,false);
+			PlayAbilitySound();
 		}
 
 		private void DefineMousePosition()

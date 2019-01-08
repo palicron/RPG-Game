@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Character
@@ -28,6 +27,13 @@ namespace RPG.Character
 			StartCoroutine(DestroyParticleAfterWhenFInish(particleObjet));
 		}
 
+
+		protected void PlayAbilitySound()
+		{
+			var abilitySound = config.GetAudioCLip(); //TODO randon clip
+			var audioSource = GetComponent<AudioSource>();
+			audioSource.PlayOneShot(abilitySound);
+		}
 		IEnumerator DestroyParticleAfterWhenFInish(GameObject particlePrefab)
 		{
 			while(particlePrefab.GetComponent<ParticleSystem>().isPlaying)

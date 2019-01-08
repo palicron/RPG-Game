@@ -13,6 +13,7 @@ namespace RPG.Character
 		{
 			useParams.target.TakeDamage(useParams.baseDamage + (config as PowerAttackConfig).GetExtraDamage());
 			PlayParticalEffect(transform.position,true);
+			PlayAbilitySound();
 		}
 	
 
