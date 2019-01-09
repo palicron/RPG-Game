@@ -15,5 +15,7 @@ MonoBehaviour:
   energyCost: 20
   particlePrefab: {fileID: 1333632999627787393, guid: 289d268fd4402544ea492e4f2da75994,
     type: 3}
-  Sound: {fileID: 8300000, guid: e34519220172e5144965badfebfa1019, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: e34519220172e5144965badfebfa1019, type: 3}
+  - {fileID: 8300000, guid: 7128a0f7a4421204c9120f2b1c69209e, type: 3}
   extraHeal: 50

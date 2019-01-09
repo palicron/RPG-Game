@@ -134,6 +134,7 @@
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\_Weapons\Weapon.cs" />
+    <Compile Include="Assets\_Weapons\WeaponPickUpPoint.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\GerstnerDisplace.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\MeshContainer.cs" />

@@ -201,6 +201,10 @@ namespace RPG.Character
 			currentHelhPoints = Mathf.Clamp(currentHelhPoints + points, 0f, maxHealhPoints);
 		}
 
+		public void PutWeaponInHand(Weapon weapongConfig)
+		{
+
+		}
 		IEnumerator KillPlayer()
 		{
 			animator.SetTrigger(DEATH_TRIGGER);
