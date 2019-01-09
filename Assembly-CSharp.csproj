@@ -82,6 +82,8 @@
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelftHealBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelftHealConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\SpecialAbilityConfig.cs" />
+    <Compile Include="Assets\_Characters\Weapons\Weapon.cs" />
+    <Compile Include="Assets\_Characters\Weapons\WeaponPickUpPoint.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
     <Compile Include="Assets\_Core\IDamageable.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
@@ -133,8 +135,6 @@
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-    <Compile Include="Assets\_Weapons\Weapon.cs" />
-    <Compile Include="Assets\_Weapons\WeaponPickUpPoint.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\GerstnerDisplace.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\MeshContainer.cs" />

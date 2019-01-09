@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using RPG.Core;
-using RPG.Weapons;
+
 namespace RPG.Character
 {
 	public class Enemy : MonoBehaviour, IDamagaeble

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Character;
 
 
-namespace RPG.Weapons
+
+namespace RPG.Character
 {
 
 	[ExecuteInEditMode]
