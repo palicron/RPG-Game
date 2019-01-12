@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-
 using UnityEngine.AI;
 using RPG.CameraUI;
 
@@ -9,58 +8,77 @@ namespace RPG.Character
 {
 
 	[RequireComponent(typeof(NavMeshAgent))]
-	[RequireComponent(typeof(AICharacterControl))]
 	[RequireComponent(typeof(ThirdPersonCharacter))]
-	public class PlayerMovement : MonoBehaviour
+	public class CharacterMovement : MonoBehaviour
 	{
+		[SerializeField] float stopingDistance = 1f;
 		bool IsInDirectMode = false;
-		ThirdPersonCharacter thirPersonCharacter = null;   // A reference to the ThirdPersonCharacter on the object
-		CameraRaycaster cameraRaycaster = null;
+		ThirdPersonCharacter thirPersonCharacter;   // A reference to the ThirdPersonCharacter on the object
+
 		Vector3 cuerrentDestination, clickPoint;
-		AICharacterControl aICharacterControl = null;
+		NavMeshAgent agent;
 		GameObject walktTarget = null;
 		//TODO serialize problem
-	
+
 		void Start()
 		{
-			cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
+			CameraRaycaster cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
 			thirPersonCharacter = GetComponent<ThirdPersonCharacter>();
 			cuerrentDestination = transform.position;
-			aICharacterControl = GetComponent<AICharacterControl>();
 			walktTarget = new GameObject("walkTarget");
-	
-
 			cameraRaycaster.OnMouseOverPotetiallWalkable += processMovement;
 			cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+			agent = GetComponent<NavMeshAgent>();
+			agent.updateRotation = false;
+			agent.updatePosition = true;
+			agent.stoppingDistance = stopingDistance;
 		}
 
+		private void Update()
+		{
+		
+		
+			if (agent.remainingDistance>agent.stoppingDistance)
+			{
+				thirPersonCharacter.Move(agent.desiredVelocity, false,false);
+			}
+			else
+			{
+				thirPersonCharacter.Move(Vector3.zero, false, false);
+			}
+		}
 		private void OnMouseOverEnemy(Enemy enemy)
 		{
-			if(Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
+			if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
 			{
-				aICharacterControl.SetTarget(enemy.transform);
+				//aICharacterControl.SetTarget(enemy.transform);
+				agent.SetDestination(enemy.transform.position);
+
 			}
 		}
 
 		void processMovement(Vector3 destination)
 		{
-			if(Input.GetMouseButton(0) )
+			if (Input.GetMouseButton(0))
 			{
-				walktTarget.transform.position = destination;
-				aICharacterControl.SetTarget(walktTarget.transform);
+				print(walktTarget.transform.position);
+
+				//walktTarget.transform.position = destination;
+				agent.SetDestination(destination);
+				
 			}
-		
-		}
-	
 
-		
+		}
+
+
+
 		// Fixed update is called in sync with physics
-		private void FixedUpdate()
-		{
+	//	private void FixedUpdate()
+		//{
 
-			cuerrentDestination = transform.position;
-			WalkToDestination();
-		}
+		//	cuerrentDestination = transform.position;
+	//		WalkToDestination();
+		//}
 		//TODO arreglar bug de mantener precionado el mause se peude mover a zonas que no
 
 
@@ -74,6 +92,12 @@ namespace RPG.Character
 				thirPersonCharacter.Move(Vector3.zero, false, false);
 			}
 		}
+
+
+
+
+
+
 
 
 		//TODO repari

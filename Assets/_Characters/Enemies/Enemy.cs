@@ -20,7 +20,7 @@ namespace RPG.Character
 		[SerializeField] GameObject proyectailSocket;
 		[SerializeField] Vector3 AimOffSet = new Vector3(0, 1f, 0);
 		ThirdPersonCharacter thirdPersonCharacter = null;
-		AICharacterControl aiCharacterControl = null;
+	
 		Player player = null;
 		bool isAttacking = false;
 
@@ -37,7 +37,7 @@ namespace RPG.Character
 		{
 			player = FindObjectOfType<Player>();
 			thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
-			aiCharacterControl = GetComponent<AICharacterControl>();
+			
 			currentHelhPoints = maxHealhPoints;
 		}
 		private void Update()
@@ -54,11 +54,11 @@ namespace RPG.Character
 			{
 				if (distanceToPlayer >= attackRadius)
 				{
-					aiCharacterControl.SetTarget(player.transform);
+					//aiCharacterControl.SetTarget(player.transform);
 
 				}
-				else
-					aiCharacterControl.SetTarget(transform);
+				//else
+					//aiCharacterControl.SetTarget(transform);
 				//TODO fire
 			}
 
