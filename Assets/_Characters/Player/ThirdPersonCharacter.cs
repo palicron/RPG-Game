@@ -10,7 +10,7 @@ namespace RPG.Character
 		[SerializeField] float MovingTurnSpeed = 360;
 		[SerializeField] float StationaryTurnSpeed = 180;
 		[SerializeField] float RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
-
+		[SerializeField] float moveSpeedMultiplier = 0.7f;
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
 		float m_TurnAmount;
@@ -78,7 +78,16 @@ namespace RPG.Character
 			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 		}
 
+		private void OnAnimatorMove()
+		{
+			if(Time.deltaTime >0)
+			{
+				Vector3 velocity = (m_Animator.deltaPosition * moveSpeedMultiplier) / Time.deltaTime;
 
+				velocity.y = m_Rigidbody.velocity.y;
+				m_Rigidbody.velocity = velocity;
+			}
+		}
 
 
 

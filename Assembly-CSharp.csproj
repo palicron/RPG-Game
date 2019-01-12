@@ -63,11 +63,11 @@
   <ItemGroup>
     <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
+    <Compile Include="Assets\_Characters\CharacterMovement.cs" />
     <Compile Include="Assets\_Characters\Enemies\Enemy.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyHealthBar.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyUI.cs" />
     <Compile Include="Assets\_Characters\Enemies\Projectile.cs" />
-    <Compile Include="Assets\_Characters\Player\CharacterMovement.cs" />
     <Compile Include="Assets\_Characters\Player\DominnannHand.cs" />
     <Compile Include="Assets\_Characters\Player\Energy.cs" />
     <Compile Include="Assets\_Characters\Player\Player.cs" />
