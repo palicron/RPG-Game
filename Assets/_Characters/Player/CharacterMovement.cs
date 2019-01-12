@@ -40,11 +40,11 @@ namespace RPG.Character
 		
 			if (agent.remainingDistance>agent.stoppingDistance)
 			{
-				thirPersonCharacter.Move(agent.desiredVelocity, false,false);
+				thirPersonCharacter.Move(agent.desiredVelocity);
 			}
 			else
 			{
-				thirPersonCharacter.Move(Vector3.zero, false, false);
+				thirPersonCharacter.Move(Vector3.zero);
 			}
 		}
 		private void OnMouseOverEnemy(Enemy enemy)
@@ -86,10 +86,10 @@ namespace RPG.Character
 		{
 			var playerToClickPoint = cuerrentDestination - transform.position;
 			if (playerToClickPoint.magnitude >= 0)
-				thirPersonCharacter.Move(playerToClickPoint, false, false);
+				thirPersonCharacter.Move(playerToClickPoint);
 			else
 			{
-				thirPersonCharacter.Move(Vector3.zero, false, false);
+				thirPersonCharacter.Move(Vector3.zero);
 			}
 		}
 
@@ -109,7 +109,7 @@ namespace RPG.Character
 			Vector3 comeraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 			Vector3 movement = v * comeraForward + h * Camera.main.transform.right;
 
-			thirPersonCharacter.Move(movement, false, false);
+			thirPersonCharacter.Move(movement);
 		}
 
 		Vector3 ShortDestination(Vector3 destination, float shortening)
