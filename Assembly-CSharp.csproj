@@ -72,7 +72,6 @@
     <Compile Include="Assets\_Characters\Player\Energy.cs" />
     <Compile Include="Assets\_Characters\Player\Player.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
-    <Compile Include="Assets\_Characters\Player\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area of Effect\AreaOfEffectBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area of Effect\AreaOfEffectConfig.cs" />

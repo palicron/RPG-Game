@@ -19,7 +19,7 @@ namespace RPG.Character
 		[SerializeField] GameObject proyectileToUse;
 		[SerializeField] GameObject proyectailSocket;
 		[SerializeField] Vector3 AimOffSet = new Vector3(0, 1f, 0);
-		ThirdPersonCharacter thirdPersonCharacter = null;
+	
 	
 		Player player = null;
 		bool isAttacking = false;
@@ -36,7 +36,7 @@ namespace RPG.Character
 		private void Start()
 		{
 			player = FindObjectOfType<Player>();
-			thirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
+			
 			
 			currentHelhPoints = maxHealhPoints;
 		}
