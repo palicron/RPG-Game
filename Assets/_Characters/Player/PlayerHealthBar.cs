@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace RPG.Character
 {
-
+	//TODO remobe
 	[RequireComponent(typeof(Image))]
 	public class PlayerHealthBar : MonoBehaviour
 	{
@@ -22,7 +22,7 @@ namespace RPG.Character
 		// Update is called once per frame
 		void Update()
 		{
-			healtOrbImage.fillAmount = player.healthAsPercentage;
+			//healtOrbImage.fillAmount = player.healthAsPercentage;
 		}
 	}
 

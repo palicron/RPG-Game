@@ -9,12 +9,12 @@ using RPG.Core;
 using UnityEngine.SceneManagement;
 namespace RPG.Character
 {
-	public class Player : MonoBehaviour, IDamagaeble
+	public class Player : MonoBehaviour
 	{
 		const string ATTACK_TRIGGER = "Attack";
-		const string DEATH_TRIGGER = "Death";
+		
 		const string DEFAULT_ATTACK = "DEFAULT ATTACK";
-		[SerializeField] float maxHealhPoints = 100f;
+	
 		[SerializeField] float baseDamage = 10f;
 		[SerializeField] Weapon currentWeaponConfig;
 		[SerializeField] AnimatorOverrideController animatorOverrideController;
@@ -22,15 +22,14 @@ namespace RPG.Character
 		Enemy CurrentEnemy = null;
 		//TODO Temporarily serializi for debug
 		[SerializeField] SpecialAbilityConfig[] abilities;
-		AudioSource audioSource;
+		
 		private Animator animator;
 		//[SerializeField] GameObject WeaponnSocket;
-		float currentHelhPoints = 100f;
+		
 		[Range(0f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
 		[SerializeField] float criticalHitMultiplier = 1.25f;
 
-		[SerializeField] AudioClip[] DamgeSounds;
-		[SerializeField] AudioClip[] DeathSounds;
+
 		CameraRaycaster cameraRaycaster;
 		[SerializeField] ParticleSystem critParticle = null;
 
@@ -39,8 +38,6 @@ namespace RPG.Character
 		{
 
 			RegisterForMouseClik();
-			currentHelhPoints = maxHealhPoints;
-			audioSource = GetComponent<AudioSource>();
 			PutWeaponInHand(currentWeaponConfig);
 			AttachInitialAbilities();
 
@@ -56,6 +53,7 @@ namespace RPG.Character
 
 		private void Update()
 		{
+			var healthAsPercentage = GetComponent<HealthSystem>().healthAsPercentage;
 			if (healthAsPercentage > Mathf.Epsilon)
 			{
 				ScanForAbilityKeyPress();
@@ -97,13 +95,7 @@ namespace RPG.Character
 			cameraRaycaster.onMouseOverEnemy += MouseOverEnemy;
 		}
 
-		public float healthAsPercentage
-		{
-			get
-			{
-				return currentHelhPoints / maxHealhPoints;
-			}
-		}
+
 
 		void MouseOverEnemy(Enemy enemy)
 		{
@@ -137,7 +129,7 @@ namespace RPG.Character
 			if (Time.time - lastHittime > currentWeaponConfig.MinTimeBetween)
 			{
 				animator.SetTrigger(ATTACK_TRIGGER); //TODO maeka const
-				CurrentEnemy.TakeDamage(CalculateDamage());
+	
 				lastHittime = Time.time;
 			}
 		}
@@ -166,31 +158,7 @@ namespace RPG.Character
 
 		}
 
-		public void TakeDamage(float damage)
-		{
-			if (currentHelhPoints - damage <= 0)
-			{
 
-				currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
-				StartCoroutine(KillPlayer());
-
-			}
-			else
-			{
-
-				audioSource.Stop();
-				audioSource.clip = DamgeSounds[UnityEngine.Random.Range(0, DamgeSounds.Length)];
-				audioSource.Play();
-
-				currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
-			}
-
-
-		}
-		public void Heal(float points)
-		{
-			currentHelhPoints = Mathf.Clamp(currentHelhPoints + points, 0f, maxHealhPoints);
-		}
 
 		public void PutWeaponInHand(Weapon weapongConfig)
 		{
@@ -205,17 +173,7 @@ namespace RPG.Character
 			weapongObject.transform.localPosition = currentWeaponConfig.gripTrasform.localPosition;
 			weapongObject.transform.localRotation = currentWeaponConfig.gripTrasform.localRotation;
 		}
-		IEnumerator KillPlayer()
-		{
-			animator.SetTrigger(DEATH_TRIGGER);
 
-			audioSource.Stop();
-			audioSource.clip = DeathSounds[UnityEngine.Random.Range(0, DeathSounds.Length)];
-			audioSource.Play();
-
-			yield return new WaitForSecondsRealtime(audioSource.clip.length + 0.1f);//todo use audiclipo lenth
-			SceneManager.LoadSceneAsync(0);
-		}
 
 	}
 }

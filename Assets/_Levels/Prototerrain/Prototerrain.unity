@@ -4572,6 +4572,11 @@ PrefabInstance:
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 1714051513}
+    - target: {fileID: 520977413022222704, guid: caa42664b8720f841b8211322a81670e,
+        type: 3}
+      propertyPath: healtBar
+      value: 
+      objectReference: {fileID: 1123185687}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caa42664b8720f841b8211322a81670e, type: 3}
 --- !u!1001 &948244109
@@ -6121,7 +6126,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0.527
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -7967,55 +7972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <agent>k__BackingField: {fileID: 0}
-  <character>k__BackingField: {fileID: 0}
-  target: {fileID: 0}
 --- !u!114 &1509970307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8029,7 +7985,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74b1ac7734924847a59469e28e270a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealhPoints: 30
   attackRadius: 1.55
   moveRadius: 0.72
   firingPeriodInS: 0.5
@@ -8075,12 +8030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Rigidbody: {fileID: 0}
-  m_Animator: {fileID: 0}
 --- !u!136 &1509970310
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11357,7 +11306,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 1
+  m_FillAmount: 0.443
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0

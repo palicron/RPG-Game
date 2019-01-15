@@ -16,7 +16,8 @@ public class SelftHealBehavior : AbilityBehavior
 		}
 		public override void Use(AbilityUseParams useParams)
 		{
-			player.Heal((config as SelftHealConfig).GetExtraHeal());
+			var playerHealth = player.GetComponent<HealthSystem>();
+			playerHealth.Heal((config as SelftHealConfig).GetExtraHeal());
 			PlayAbilitySound();
 			PlayParticalEffect(transform.position,true);
 		}

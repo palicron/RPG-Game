@@ -6,11 +6,11 @@ using RPG.Core;
 
 namespace RPG.Character
 {
-	public class Enemy : MonoBehaviour, IDamagaeble
+	public class Enemy : MonoBehaviour,IDamagaeble
 	{
 
-		[SerializeField] float maxHealhPoints = 100f;
-		float currentHelhPoints;
+		
+	
 		[SerializeField] float attackRadius = 1f;
 		[SerializeField] float moveRadius = 2f;
 		[SerializeField] float firingPeriodInS = 0.5f;
@@ -24,13 +24,6 @@ namespace RPG.Character
 		Player player = null;
 		bool isAttacking = false;
 
-		public float healthAsPercentage
-		{
-			get
-			{
-				return currentHelhPoints / maxHealhPoints;
-			}
-		}
 
 
 		private void Start()
@@ -38,15 +31,11 @@ namespace RPG.Character
 			player = FindObjectOfType<Player>();
 			
 			
-			currentHelhPoints = maxHealhPoints;
+			
 		}
 		private void Update()
 		{
-			if(player.healthAsPercentage <=Mathf.Epsilon)
-			{
-				StopAllCoroutines();
-				Destroy(this);
-			}
+
 			float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
 
@@ -77,12 +66,7 @@ namespace RPG.Character
 				isAttacking = false;
 			}
 		}
-		public void TakeDamage(float damage)
-		{
-			currentHelhPoints = Mathf.Clamp(currentHelhPoints - damage, 0f, maxHealhPoints);
-			if (currentHelhPoints <= 0)
-				Destroy(gameObject);
-		}
+
 
 		void FireProjectile()
 		{
@@ -108,6 +92,12 @@ namespace RPG.Character
 			Gizmos.DrawWireSphere(transform.position, attackRadius);
 			Gizmos.color = Color.blue;
 			Gizmos.DrawWireSphere(transform.position, moveRadius);
+		}
+
+		public void TakeDamage(float damage)
+		{
+			//TODO Remove this
+			throw new System.NotImplementedException();
 		}
 	}
 }
