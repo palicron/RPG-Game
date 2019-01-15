@@ -10,10 +10,10 @@ namespace RPG.Character
 	{
 	
 		Vector3 MousepOsition;
-		public override void Use(AbilityUseParams useParams)
+		public override void Use(GameObject target)
 		{
 			DefineMousePosition();
-			DealRadialDamage(useParams);
+			DealRadialDamage();
 			PlayParticalEffect(MousepOsition,false);
 			PlayAbilitySound();
 		}
@@ -27,7 +27,7 @@ namespace RPG.Character
 		}
 
 
-		private void DealRadialDamage(AbilityUseParams useParams)
+		private void DealRadialDamage( )
 		{
 			//static sphere
 			RaycastHit[] hits = Physics.SphereCastAll(
@@ -38,10 +38,10 @@ namespace RPG.Character
 
 			foreach (RaycastHit hit in hits)
 			{
-				var damageable = hit.collider.gameObject.GetComponent<IDamagaeble>();
+				var damageable = hit.collider.gameObject.GetComponent<HealthSystem>();
 				if (damageable != null && !hit.collider.gameObject.tag.Equals("Player"))
 				{
-					float damageTodeal = useParams.baseDamage + (config as AreaOfEffectConfig).GetExtraDamage();
+					float damageTodeal = (config as AreaOfEffectConfig).GetExtraDamage();
 					damageable.TakeDamage(damageTodeal);
 				}
 			}

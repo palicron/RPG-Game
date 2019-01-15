@@ -9,9 +9,9 @@ namespace RPG.Character
 	{
 	
 
-		public override void Use(AbilityUseParams useParams)
+		public override void Use(GameObject target)
 		{
-			useParams.target.TakeDamage(useParams.baseDamage + (config as PowerAttackConfig).GetExtraDamage());
+			target.GetComponent<HealthSystem>().TakeDamage( (config as PowerAttackConfig).GetExtraDamage());
 			PlayParticalEffect(transform.position,true);
 			PlayAbilitySound();
 		}

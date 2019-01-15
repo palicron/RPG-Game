@@ -4569,9 +4569,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
+      propertyPath: abilities.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 1714051513}
+    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
+      propertyPath: abilities.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3129939e42a18d243b873a32a62dd2da,
+        type: 2}
+    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
+      propertyPath: abilities.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: bc6ea2abf7f50be48b005cf81dad2c73,
+        type: 2}
+    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
+      propertyPath: abilities.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: ea3fb6528007693489a9c09d70fe35ab,
+        type: 2}
     - target: {fileID: 520977413022222704, guid: caa42664b8720f841b8211322a81670e,
         type: 3}
       propertyPath: healtBar
@@ -7948,10 +7967,8 @@ GameObject:
   - component: {fileID: 1509970312}
   - component: {fileID: 1509970311}
   - component: {fileID: 1509970310}
-  - component: {fileID: 1509970309}
   - component: {fileID: 1509970308}
   - component: {fileID: 1509970307}
-  - component: {fileID: 1509970306}
   m_Layer: 9
   m_Name: Healer
   m_TagString: Untagged
@@ -7959,19 +7976,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1509970306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1509970306, guid: 69e556082ec00ca4887dc7cc17b344f3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8633491861809185969}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509970305}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1509970307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8017,19 +8021,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1509970309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1509970309, guid: 69e556082ec00ca4887dc7cc17b344f3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8633491861809185969}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1509970305}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &1509970310
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18442,7 +18433,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 69e556082ec00ca4887dc7cc17b344f3, type: 3}
 --- !u!1001 &9158447243818262907
 PrefabInstance:

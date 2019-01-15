@@ -83,7 +83,6 @@
     <Compile Include="Assets\_Characters\Weapons\Weapon.cs" />
     <Compile Include="Assets\_Characters\Weapons\WeaponPickUpPoint.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
-    <Compile Include="Assets\_Core\IDamageable.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
     <Compile Include="Assets\_External Assests\Fantasy Lands\Demo\Scripts\CameraMouseDrag.cs" />
     <Compile Include="Assets\_External Assests\Fantasy Lands\Demo\Scripts\CameraMouseRotate.cs" />

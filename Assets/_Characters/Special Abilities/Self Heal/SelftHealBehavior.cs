@@ -14,7 +14,7 @@ public class SelftHealBehavior : AbilityBehavior
 			player = FindObjectOfType<Player>();
 		
 		}
-		public override void Use(AbilityUseParams useParams)
+		public override void Use(GameObject target)
 		{
 			var playerHealth = player.GetComponent<HealthSystem>();
 			playerHealth.Heal((config as SelftHealConfig).GetExtraHeal());

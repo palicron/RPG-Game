@@ -4,17 +4,7 @@ using UnityEngine;
 using RPG.Core;
 namespace RPG.Character
 {
-	public struct AbilityUseParams
-	{
-		public IDamagaeble target;
-		public float baseDamage;
 
-		public AbilityUseParams(IDamagaeble target, float baseDamage)
-		{
-			this.target = target;
-			this.baseDamage = baseDamage;
-		}
-	}
 	public abstract class SpecialAbilityConfig : ScriptableObject
 	{
 		[Header("Special Ability General")]
@@ -36,9 +26,9 @@ namespace RPG.Character
 		
 
 
-		public void Use(AbilityUseParams useParams)
+		public void Use(GameObject target)
 		{
-			behaviour.Use(useParams);
+			behaviour.Use(target);
 		}
 
 		public float GetEnergyCost()

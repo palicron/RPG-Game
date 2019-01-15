@@ -9,7 +9,7 @@ namespace RPG.Character
 
 		protected SpecialAbilityConfig config;
 		const float PARTICLE_CLEAN_UP_DATE = 10f;
-		public abstract void Use(AbilityUseParams useParams);
+		public abstract void Use(GameObject target=null);
 
 		public void setConfing(SpecialAbilityConfig configToSet)
 		{

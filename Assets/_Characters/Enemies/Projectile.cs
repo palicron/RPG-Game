@@ -29,15 +29,16 @@ public class Projectile : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		if(collision.gameObject.layer != shooter.layer)
-		{
-			Component damageable = collision.gameObject.GetComponent(typeof(IDamagaeble));
-			if (damageable)
-			{
-				(damageable as IDamagaeble).TakeDamage(damageCaused);
-			}
-		}
-		Destroy(gameObject, DESTRPOID_DELAY);
+			//TODO reiplement
+		//if(collision.gameObject.layer != shooter.layer)
+		//{
+		//	Component damageable = collision.gameObject.GetComponent(typeof(HealthSystem));
+		//	if (damageable)
+		//	{
+		//		(damageable as HealthSystem).TakeDamage(damageCaused);
+		//	}
+		//}
+		//Destroy(gameObject, DESTRPOID_DELAY);
 	}
 
 	public void setDmg(float dmg)
