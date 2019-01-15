@@ -21,35 +21,21 @@ namespace RPG.Character
 		GameObject weapongObject;
 		Enemy CurrentEnemy = null;
 		//TODO Temporarily serializi for debug
-		[SerializeField] SpecialAbilityConfig[] abilities;
-		
 		private Animator animator;
 		//[SerializeField] GameObject WeaponnSocket;
-		
 		[Range(0f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
 		[SerializeField] float criticalHitMultiplier = 1.25f;
-
-
 		CameraRaycaster cameraRaycaster;
 		[SerializeField] ParticleSystem critParticle = null;
-
 		float lastHittime = 0;
+		SpecialAbilities specialAbilitys;
 		private void Start()
 		{
-
 			RegisterForMouseClik();
 			PutWeaponInHand(currentWeaponConfig);
-			AttachInitialAbilities();
-
+			specialAbilitys = GetComponent<SpecialAbilities>();
 		}
 
-		private void AttachInitialAbilities()
-		{
-			for (int i = 0; i < abilities.Length; i++)
-			{
-				abilities[i].AttachAbilityTo(this.gameObject);
-			}
-		}
 
 		private void Update()
 		{
@@ -64,12 +50,12 @@ namespace RPG.Character
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
-				AttempotsSpecialAbility(1);
+			   specialAbilitys.AttempotsSpecialAbility(1);
 
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
 			{
-				AttempotsSpecialAbility(2);
+				specialAbilitys.AttempotsSpecialAbility(2);
 			}
 		}
 
@@ -106,22 +92,11 @@ namespace RPG.Character
 			}
 			else if (Input.GetMouseButtonDown(1))
 			{
-				AttempotsSpecialAbility(0);
+				specialAbilitys.AttempotsSpecialAbility(0);
 			}
 		}
 
-		private void AttempotsSpecialAbility(int abilittIndex)
-		{
-			var energyComponent = GetComponent<Energy>();
-			float energyCost = abilities[abilittIndex].GetEnergyCost();
-			if (energyComponent.IsEnergyAvailable(10f))//TODO read from ability
-			{
 
-				energyComponent.ConsumeEnergy(energyCost);
-				var abilityParams = new AbilityUseParams(CurrentEnemy, baseDamage);
-				abilities[abilittIndex].Use(abilityParams);
-			}
-		}
 
 		private void AttackTarget()
 		{
