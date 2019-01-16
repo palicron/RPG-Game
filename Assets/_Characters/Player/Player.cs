@@ -92,7 +92,7 @@ namespace RPG.Character
 			}
 			else if (Input.GetMouseButtonDown(1))
 			{
-				specialAbilitys.AttempotsSpecialAbility(0);
+				specialAbilitys.AttempotsSpecialAbility(0, CurrentEnemy.gameObject);
 			}
 		}
 

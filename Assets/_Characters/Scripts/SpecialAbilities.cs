@@ -14,6 +14,7 @@ namespace RPG.Character
 		[SerializeField] Image energyBar = null;
 		[SerializeField] float maxEnergyPoint = 100f;
 		[SerializeField] float regenPointsPerSecond = 1f;
+		[SerializeField] AudioClip outOfMana;
 
 		float currentEnergPoints = 100f;
 
@@ -70,21 +71,22 @@ namespace RPG.Character
 			energyBar.fillAmount = EnergyAsPercentage;
 		}
 
-		public void AttempotsSpecialAbility(int abilittIndex)
+		public void AttempotsSpecialAbility(int abilittIndex, GameObject target = null)
 		{
-			
+
 			float energyCost = abilities[abilittIndex].GetEnergyCost();
-			if (energyCost<=currentEnergPoints)//TODO read from ability
+			if (energyCost <= currentEnergPoints)//TODO read from ability
 			{
 
 				ConsumeEnergy(energyCost);
 				print("using ability" + abilittIndex);
-				//var abilityParams = new AbilityUseParams(CurrentEnemy, baseDamage);
-				//abilities[abilittIndex].Use(abilityParams);
+
+				abilities[abilittIndex].Use(target);
 			}
 			else
 			{
-				//TODO PLAy out of energy sound
+
+				audioSource.PlayOneShot(outOfMana);
 			}
 		}
 		public int GetNumberOfAbilitys()
