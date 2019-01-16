@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.Assertions;
 using RPG.CameraUI; //TODO consider RE-write
-using RPG.Core;
 
-using UnityEngine.SceneManagement;
 namespace RPG.Character
 {
-	public class Player : MonoBehaviour
+	public class PlayerControl : MonoBehaviour
 	{
 		const string ATTACK_TRIGGER = "Attack";
 		
@@ -29,14 +25,42 @@ namespace RPG.Character
 		[SerializeField] ParticleSystem critParticle = null;
 		float lastHittime = 0;
 		SpecialAbilities specialAbilitys;
+		Character charater;
 		private void Start()
 		{
-			RegisterForMouseClik();
+			charater = GetComponent<Character>();
+			RegisterForMouseEvent();
 			PutWeaponInHand(currentWeaponConfig);
 			specialAbilitys = GetComponent<SpecialAbilities>();
 		}
 
+		private void RegisterForMouseEvent()
+		{
+			cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+			cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
+			cameraRaycaster.OnMouseOverPotetiallWalkable += OnMouseOverPotencialWalkable;
+		}
 
+		void OnMouseOverPotencialWalkable(Vector3 destination)
+		{
+			if(Input.GetMouseButton(0))
+			{
+				charater.SetDestination(destination);
+			}
+		}
+
+		void OnMouseOverEnemy(Enemy enemy)
+		{
+			CurrentEnemy = enemy;
+			if (Input.GetMouseButtonDown(0) && IsTargetInrange(enemy.gameObject))
+			{
+				AttackTarget();
+			}
+			else if (Input.GetMouseButtonDown(1))
+			{
+				specialAbilitys.AttempotsSpecialAbility(0, CurrentEnemy.gameObject);
+			}
+		}
 		private void Update()
 		{
 			var healthAsPercentage = GetComponent<HealthSystem>().healthAsPercentage;
@@ -75,26 +99,11 @@ namespace RPG.Character
 			return dominanHands[0].gameObject;
 		}
 
-		private void RegisterForMouseClik()
-		{
-			cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-			cameraRaycaster.onMouseOverEnemy += MouseOverEnemy;
-		}
+	
 
 
 
-		void MouseOverEnemy(Enemy enemy)
-		{
-			CurrentEnemy = enemy;
-			if (Input.GetMouseButtonDown(0) && IsTargetInrange(enemy.gameObject))
-			{
-				AttackTarget();
-			}
-			else if (Input.GetMouseButtonDown(1))
-			{
-				specialAbilitys.AttempotsSpecialAbility(0, CurrentEnemy.gameObject);
-			}
-		}
+	
 
 
 

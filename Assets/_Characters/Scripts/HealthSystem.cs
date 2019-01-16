@@ -70,7 +70,7 @@ namespace RPG.Character
 			StopAllCoroutines();
 			characterMovement.Kill();
 			animator.SetTrigger(DEATH_TRIGGER);
-			var playerComponet = GetComponent<Player>();
+			var playerComponet = GetComponent<PlayerControl>();
 			if (playerComponet && playerComponet.isActiveAndEnabled)
 			{
 				audioSource.Stop();

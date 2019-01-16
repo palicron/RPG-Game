@@ -47,7 +47,7 @@ namespace RPG.Character
 
 		private void OnTriggerEnter(Collider other)
 		{
-			var palyer = FindObjectOfType<Player>();
+			var palyer = FindObjectOfType<PlayerControl>();
 			palyer.PutWeaponInHand(weapongConfig);
 			audioSource.PlayOneShot(audioPick);
 		}

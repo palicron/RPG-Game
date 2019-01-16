@@ -7,11 +7,11 @@ namespace RPG.Character
 public class SelftHealBehavior : AbilityBehavior
 	{
 	
-		Player player;
+		PlayerControl player;
 
 		private void Start()
 		{
-			player = FindObjectOfType<Player>();
+			player = FindObjectOfType<PlayerControl>();
 		
 		}
 		public override void Use(GameObject target)

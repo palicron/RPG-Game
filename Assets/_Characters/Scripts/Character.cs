@@ -6,19 +6,22 @@ using RPG.CameraUI;
 
 namespace RPG.Character
 {
-	[SelectionBase]
-	[RequireComponent(typeof(NavMeshAgent))]
-	
+	[SelectionBase]	
 	public class Character : MonoBehaviour
 	{
-		[Header("Setup Settings")]
+		[Header("Animator Settings")]
 		[SerializeField] RuntimeAnimatorController animatorController;
 		[SerializeField] AnimatorOverrideController aniamtorOverdriveControler;
 		[SerializeField] Avatar characterAvatar;
+
+		[Header("Audio Setup")]
+		[SerializeField] float audioSourceSpatingBlend = 0.5f;
+
 		[Header("Colider Setup")]
 		[SerializeField] Vector3 capsulColliderCentar = new Vector3(0, 0.9f, 0);
 		[SerializeField] float capsulColliderRadius = 0.3f;
 		[SerializeField] float capsulColliderHeight = 1.88f;
+		
 
 		[Header("Movement Properties")]
 		[SerializeField] float MovingTurnSpeed = 360;
@@ -28,7 +31,10 @@ namespace RPG.Character
 		[SerializeField] float moveThresHold = 1f;
 		[SerializeField] float stopingDistance = 1f;
 
-	
+		[Header("Navmesh Agent Setup")]
+		[SerializeField] float navMeshSteeringSpeed = 4f;
+		[SerializeField] float navMeshStopingDistance = 1.3f;
+
 		float m_TurnAmount;
 		float m_ForwardAmount;
 		bool IsInDirectMode = false;
@@ -36,10 +42,11 @@ namespace RPG.Character
 	
 		Animator animator;
 		Rigidbody m_Rigidbody;
-		Vector3 cuerrentDestination, clickPoint;
+		Vector3 cuerrentDestination;
 		NavMeshAgent agent;
 		CapsuleCollider capsulCollider;
 
+		bool isAlive = true;
 		//TODO serialize problem
 
 		private void Awake()
@@ -52,36 +59,35 @@ namespace RPG.Character
 			animator = gameObject.AddComponent<Animator>();
 			animator.runtimeAnimatorController = animatorController;
 			animator.avatar = characterAvatar;
+
 			capsulCollider = gameObject.AddComponent<CapsuleCollider>();
 			capsulCollider.center = capsulColliderCentar;
 			capsulCollider.radius = capsulColliderRadius;
 			capsulCollider.height = capsulColliderHeight;
 
-		}
-
-		void Start()
-		{
-			CameraRaycaster cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
-			
-			cuerrentDestination = transform.position;
-			animator = GetComponent<Animator>();
-			m_Rigidbody = GetComponent<Rigidbody>();
+			m_Rigidbody = gameObject.AddComponent<Rigidbody>();
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-		
-			cameraRaycaster.OnMouseOverPotetiallWalkable += processMovement;
-			cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
-			agent = GetComponent<NavMeshAgent>();
+
+			var audioSource = gameObject.AddComponent<AudioSource>();
+			audioSource.playOnAwake = false;
+			audioSource.spatialBlend = audioSourceSpatingBlend;
+
+			agent = gameObject.AddComponent<NavMeshAgent>();
 			agent.updateRotation = false;
 			agent.updatePosition = true;
 			agent.stoppingDistance = stopingDistance;
-		
+			agent.speed = navMeshSteeringSpeed;
+			agent.stoppingDistance = navMeshStopingDistance;
+			agent.autoBraking = true;
 		}
+
+	
 
 		private void Update()
 		{
 		
 		
-			if (agent.remainingDistance>agent.stoppingDistance)
+			if (agent.remainingDistance>agent.stoppingDistance && isAlive)
 			{
 				Move(agent.desiredVelocity);
 			}
@@ -91,28 +97,9 @@ namespace RPG.Character
 			}
 		}
 
-		private void OnMouseOverEnemy(Enemy enemy)
-		{
-			if (Input.GetMouseButton(0) || Input.GetMouseButtonDown(1))
-			{
-				//aICharacterControl.SetTarget(enemy.transform);
-				agent.SetDestination(enemy.transform.position);
 
-			}
-		}
 
-		void processMovement(Vector3 destination)
-		{
-			if (Input.GetMouseButton(0))
-			{
-
-				agent.SetDestination(destination);
-				
-			}
-
-		}
-
-		public void Move(Vector3 move)
+		void Move(Vector3 move)
 		{
 
 			if (move.magnitude > moveThresHold)
@@ -127,7 +114,10 @@ namespace RPG.Character
 			UpdateAnimator();
 		}
 
-
+		public void SetDestination(Vector3 worldPos)
+		{
+			agent.SetDestination(worldPos);
+		}
 
 		void UpdateAnimator()
 		{
@@ -182,7 +172,7 @@ namespace RPG.Character
 
 		public void Kill()
 		{
-
+			isAlive = false;
 		}
 
 	}

@@ -21,14 +21,14 @@ namespace RPG.Character
 		[SerializeField] Vector3 AimOffSet = new Vector3(0, 1f, 0);
 	
 	
-		Player player = null;
+		PlayerControl player = null;
 		bool isAttacking = false;
 
 
 
 		private void Start()
 		{
-			player = FindObjectOfType<Player>();
+			player = FindObjectOfType<PlayerControl>();
 			
 			
 			

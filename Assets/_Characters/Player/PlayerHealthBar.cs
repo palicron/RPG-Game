@@ -10,12 +10,12 @@ namespace RPG.Character
 	public class PlayerHealthBar : MonoBehaviour
 	{
 		Image healtOrbImage;
-		Player player;
+		PlayerControl player;
 
 		// Use this for initialization
 		void Start()
 		{
-			player = FindObjectOfType<Player>();
+			player = FindObjectOfType<PlayerControl>();
 			healtOrbImage = GetComponent<Image>();
 		}
 

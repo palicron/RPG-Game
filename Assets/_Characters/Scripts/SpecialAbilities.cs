@@ -80,8 +80,6 @@ namespace RPG.Character
 			{
 
 				ConsumeEnergy(energyCost);
-				print("using ability" + abilittIndex);
-
 				abilities[abilittIndex].Use(target);
 			}
 			else
