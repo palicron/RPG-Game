@@ -23,6 +23,7 @@ namespace RPG.Character
 		float EnergyAsPercentage { get { return currentEnergPoints / maxEnergyPoint; } }
 
 
+
 		// Start is called before the first frame update
 		void Start()
 		{

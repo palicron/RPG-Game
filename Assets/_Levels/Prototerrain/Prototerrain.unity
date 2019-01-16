@@ -4569,34 +4569,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
-      propertyPath: abilities.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
       propertyPath: energyBar
       value: 
       objectReference: {fileID: 1714051513}
-    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
-      propertyPath: abilities.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 3129939e42a18d243b873a32a62dd2da,
-        type: 2}
-    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
-      propertyPath: abilities.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: bc6ea2abf7f50be48b005cf81dad2c73,
-        type: 2}
-    - target: {fileID: 384218103, guid: caa42664b8720f841b8211322a81670e, type: 3}
-      propertyPath: abilities.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: ea3fb6528007693489a9c09d70fe35ab,
-        type: 2}
     - target: {fileID: 520977413022222704, guid: caa42664b8720f841b8211322a81670e,
         type: 3}
       propertyPath: healtBar
       value: 
       objectReference: {fileID: 1123185687}
-    m_RemovedComponents: []
+    - target: {fileID: 114885806339248372, guid: caa42664b8720f841b8211322a81670e,
+        type: 3}
+      propertyPath: capsulColliderRadius
+      value: 0.3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 136980421114412266, guid: caa42664b8720f841b8211322a81670e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: caa42664b8720f841b8211322a81670e, type: 3}
 --- !u!1001 &948244109
 PrefabInstance:

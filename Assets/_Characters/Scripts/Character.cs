@@ -6,35 +6,65 @@ using RPG.CameraUI;
 
 namespace RPG.Character
 {
-
+	[SelectionBase]
 	[RequireComponent(typeof(NavMeshAgent))]
 	
-	public class CharacterMovement : MonoBehaviour
+	public class Character : MonoBehaviour
 	{
+		[Header("Setup Settings")]
+		[SerializeField] RuntimeAnimatorController animatorController;
+		[SerializeField] AnimatorOverrideController aniamtorOverdriveControler;
+		[SerializeField] Avatar characterAvatar;
+		[Header("Colider Setup")]
+		[SerializeField] Vector3 capsulColliderCentar = new Vector3(0, 0.9f, 0);
+		[SerializeField] float capsulColliderRadius = 0.3f;
+		[SerializeField] float capsulColliderHeight = 1.88f;
+
+		[Header("Movement Properties")]
 		[SerializeField] float MovingTurnSpeed = 360;
 		[SerializeField] float StationaryTurnSpeed = 180;
 		[SerializeField] float RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
 		[SerializeField] float moveSpeedMultiplier = 0.7f;
 		[SerializeField] float moveThresHold = 1f;
 		[SerializeField] float stopingDistance = 1f;
+
+	
 		float m_TurnAmount;
 		float m_ForwardAmount;
 		bool IsInDirectMode = false;
 		Vector3 m_GroundNormal;
 	
-		Animator m_Animator;
+		Animator animator;
 		Rigidbody m_Rigidbody;
 		Vector3 cuerrentDestination, clickPoint;
 		NavMeshAgent agent;
-		
+		CapsuleCollider capsulCollider;
+
 		//TODO serialize problem
+
+		private void Awake()
+		{
+			AddRquireComponets();
+		}
+
+		private void AddRquireComponets()
+		{
+			animator = gameObject.AddComponent<Animator>();
+			animator.runtimeAnimatorController = animatorController;
+			animator.avatar = characterAvatar;
+			capsulCollider = gameObject.AddComponent<CapsuleCollider>();
+			capsulCollider.center = capsulColliderCentar;
+			capsulCollider.radius = capsulColliderRadius;
+			capsulCollider.height = capsulColliderHeight;
+
+		}
 
 		void Start()
 		{
 			CameraRaycaster cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();
 			
 			cuerrentDestination = transform.position;
-			m_Animator = GetComponent<Animator>();
+			animator = GetComponent<Animator>();
 			m_Rigidbody = GetComponent<Rigidbody>();
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 		
@@ -103,8 +133,8 @@ namespace RPG.Character
 		{
 
 
-			m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
-			m_Animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
+			animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
+			animator.SetFloat("Turn", m_TurnAmount, 0.1f, Time.deltaTime);
 
 		}
 
@@ -122,7 +152,7 @@ namespace RPG.Character
 		{
 			if (Time.deltaTime > 0)
 			{
-				Vector3 velocity = (m_Animator.deltaPosition * moveSpeedMultiplier) / Time.deltaTime;
+				Vector3 velocity = (animator.deltaPosition * moveSpeedMultiplier) / Time.deltaTime;
 
 				velocity.y = m_Rigidbody.velocity.y;
 				m_Rigidbody.velocity = velocity;

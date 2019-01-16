@@ -4737,9 +4737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4765924653947990}
-  - component: {fileID: 95117446429708498}
   - component: {fileID: 54719367690551698}
-  - component: {fileID: 136980421114412266}
   - component: {fileID: 195304950133158600}
   - component: {fileID: 114885806339248372}
   - component: {fileID: 114246751762954068}
@@ -4771,25 +4769,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95117446429708498
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361448772489748}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a5674d01884853d4e8f2386a171e14d9, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3917faf65da43994a812eb159eac38c1, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &54719367690551698
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4806,20 +4785,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!136 &136980421114412266
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361448772489748}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.88
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!195 &195304950133158600
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4854,6 +4819,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c59f5403a484da4ea386fce5b30c5ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animatorController: {fileID: 9100000, guid: 3917faf65da43994a812eb159eac38c1, type: 2}
+  aniamtorOverdriveControler: {fileID: 22100000, guid: 15683cd2bbad0d54e9839a48471a6d8b,
+    type: 2}
+  characterAvatar: {fileID: 9000000, guid: a5674d01884853d4e8f2386a171e14d9, type: 3}
+  capsulColliderCentar: {x: 0, y: 0.9, z: 0}
+  capsulColliderRadius: 0.3
+  capsulColliderHeight: 1.88
   MovingTurnSpeed: 360
   StationaryTurnSpeed: 180
   RunCycleLegOffset: 0.2
@@ -4877,10 +4849,6 @@ MonoBehaviour:
     type: 2}
   animatorOverrideController: {fileID: 22100000, guid: 15683cd2bbad0d54e9839a48471a6d8b,
     type: 2}
-  abilities:
-  - {fileID: 11400000, guid: 3129939e42a18d243b873a32a62dd2da, type: 2}
-  - {fileID: 11400000, guid: bc6ea2abf7f50be48b005cf81dad2c73, type: 2}
-  - {fileID: 11400000, guid: ea3fb6528007693489a9c09d70fe35ab, type: 2}
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   critParticle: {fileID: 1509797159}
@@ -4913,9 +4881,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8673fe1566e7f0540afc544cf6f023be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilities:
+  - {fileID: 11400000, guid: 3129939e42a18d243b873a32a62dd2da, type: 2}
+  - {fileID: 11400000, guid: bc6ea2abf7f50be48b005cf81dad2c73, type: 2}
+  - {fileID: 11400000, guid: ea3fb6528007693489a9c09d70fe35ab, type: 2}
   energyBar: {fileID: 0}
   maxEnergyPoint: 100
   regenPointsPerSecond: 7
+  outOfMana: {fileID: 8300000, guid: e25a4e95e3d04524a8bc5d893ac98052, type: 3}
 --- !u!82 &521840345584445031
 AudioSource:
   m_ObjectHideFlags: 0
