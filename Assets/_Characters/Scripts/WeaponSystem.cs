@@ -99,7 +99,7 @@ namespace RPG.Character
 				yield return new WaitForSeconds(timeToWait);
 			}
 		}
-
+		
 		private void AttackTargetOnece()
 		{
 			transform.LookAt(target.transform.position);
@@ -162,7 +162,10 @@ namespace RPG.Character
 
 		}
 
-
+		public void StopAttacking()
+		{
+			StopAllCoroutines();
+		}
 
 	}
 
