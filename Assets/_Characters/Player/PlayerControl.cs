@@ -1,6 +1,5 @@
-﻿
+﻿using System.Collections;
 using UnityEngine;
-
 using RPG.CameraUI; 
 
 namespace RPG.Character
@@ -8,23 +7,30 @@ namespace RPG.Character
 	public class PlayerControl : MonoBehaviour
 	{
 
-		CameraRaycaster cameraRaycaster;
 		Character charater;
 		EnemyAI CurrentEnemy = null;
 		SpecialAbilities specialAbilitys;
 		WeaponSystem weaponSystem;
 
-		private void Start()
+		void Start()
 		{
-			charater = GetComponent<Character>();
-			RegisterForMouseEvent();
+			charater = GetComponent<Character>();		
 			weaponSystem = GetComponent<WeaponSystem>();
 			specialAbilitys = GetComponent<SpecialAbilities>();
-		}
 
+			RegisterForMouseEvent();
+		}
+		void Update()
+		{
+			var healthAsPercentage = GetComponent<HealthSystem>().healthAsPercentage;
+			if (healthAsPercentage > Mathf.Epsilon)
+			{
+				ScanForAbilityKeyPress();
+			}
+		}
 		private void RegisterForMouseEvent()
 		{
-			cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+			var cameraRaycaster = FindObjectOfType<CameraRaycaster>();
 			cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
 			cameraRaycaster.OnMouseOverPotetiallWalkable += OnMouseOverPotencialWalkable;
 		}
@@ -33,6 +39,7 @@ namespace RPG.Character
 		{
 			if (Input.GetMouseButton(0))
 			{
+				StopAllCoroutines();
 				charater.SetDestination(destination);
 			}
 		}
@@ -44,19 +51,20 @@ namespace RPG.Character
 			{
 				weaponSystem.AttackTarget(enemy.gameObject);
 			}
-			else if (Input.GetMouseButtonDown(1))
+			else if(Input.GetMouseButtonDown(0) && !IsTargetInrange(enemy.gameObject))
+			{
+				StartCoroutine(MoveToattack(enemy.gameObject));
+			}
+			else if (Input.GetMouseButtonDown(1) && IsTargetInrange(enemy.gameObject))
 			{
 				specialAbilitys.AttempotsSpecialAbility(0, CurrentEnemy.gameObject);
 			}
-		}
-		private void Update()
-		{
-			var healthAsPercentage = GetComponent<HealthSystem>().healthAsPercentage;
-			if (healthAsPercentage > Mathf.Epsilon)
+			else if (Input.GetMouseButtonDown(1) && !IsTargetInrange(enemy.gameObject))
 			{
-				ScanForAbilityKeyPress();
+				StartCoroutine(MoveToSpecialAbility(enemy.gameObject));
 			}
 		}
+
 
 		private void ScanForAbilityKeyPress()
 		{
@@ -79,17 +87,26 @@ namespace RPG.Character
 
 		}
 
+		IEnumerator MoveToTarget(GameObject target)
+		{
+			while (!IsTargetInrange(target))
+			{
+				charater.SetDestination(target.transform.position);
+				yield return new WaitForEndOfFrame();
+			}
+			yield return new WaitForEndOfFrame();
+		}
+		IEnumerator MoveToattack(GameObject target)
+		{
+			yield return StartCoroutine(MoveToTarget(target));
+			weaponSystem.AttackTarget(target);
+		}
 
-
-
-
-
-
-
-
-
-
-
+		IEnumerator MoveToSpecialAbility(GameObject target)
+		{
+			yield return StartCoroutine(MoveToTarget(target));
+			specialAbilitys.AttempotsSpecialAbility(0, CurrentEnemy.gameObject);
+		}
 
 
 

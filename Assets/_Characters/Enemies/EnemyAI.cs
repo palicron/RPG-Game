@@ -81,7 +81,7 @@ namespace RPG.Character
 		IEnumerator Patrol()
 		{
 			state = State.patrolling;
-			while(true)
+			while(patrolPath!=null)
 			{
 				Vector3 nextWayPoint = patrolPath.transform.GetChild(nextWaypoint).position;
 				character.SetDestination(nextWayPoint);
