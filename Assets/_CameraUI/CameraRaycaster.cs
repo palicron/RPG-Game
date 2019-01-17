@@ -9,7 +9,7 @@ namespace RPG.CameraUI
 	{
 		const int WALKABLE_LAYER = 8;
 
-		[SerializeField] int[] layerPriorities; //TODO remove
+		
 		[SerializeField] Texture2D walkCursor = null;
 		[SerializeField] Texture2D unknownCursor = null;
 		[SerializeField] Texture2D targetCursor = null;

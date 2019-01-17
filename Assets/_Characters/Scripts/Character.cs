@@ -47,7 +47,7 @@ namespace RPG.Character
 		CapsuleCollider capsulCollider;
 
 		bool isAlive = true;
-		//TODO serialize problem
+	
 
 		private void Awake()
 		{
