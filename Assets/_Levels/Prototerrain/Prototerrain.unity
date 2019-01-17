@@ -3866,6 +3866,64 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1405816911}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1064282302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2851828653657507998, guid: 60a7518a0a4388146adec100eeb37ff8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2851828653769388083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1064282303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064282302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fe1605f4e3050468ad1662a30ab523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealhPoints: 100
+  healtBar: {fileID: 0}
+  DamgeSounds:
+  - {fileID: 0}
+  DeathSounds:
+  - {fileID: 0}
+  deathVanishSeconds: 2
+  currentHelhPoints: 100
+--- !u!114 &1064282305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064282302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74b1ac7734924847a59469e28e270a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseRadius: 4.44
+  distanceToPlayer: 0
+--- !u!114 &1064282306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064282302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e515a41e77399e4db562a94e4d77a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  criticalHitChance: 0.1
+  criticalHitMultiplier: 1.25
+  critParticle: {fileID: 0}
+  currentWeaponConfig: {fileID: 11400000, guid: 5ef24a4a32b666744b73210aa13f6adc,
+    type: 2}
 --- !u!1 &1083081438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9705,6 +9763,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c434ed1e07fa2d439941d7e00cbb897, type: 3}
+--- !u!1 &2018845409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1361448772489748, guid: caa42664b8720f841b8211322a81670e,
+    type: 3}
+  m_PrefabInstance: {fileID: 935490703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2018845414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018845409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e515a41e77399e4db562a94e4d77a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseDamage: 10
+  criticalHitChance: 0.1
+  criticalHitMultiplier: 1.25
+  critParticle: {fileID: 2051481860}
+  currentWeaponConfig: {fileID: 11400000, guid: b51ae91de6bf15b49a7a1bda4d0efa39,
+    type: 2}
+--- !u!198 &2051481860 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1509797159, guid: caa42664b8720f841b8211322a81670e,
+    type: 3}
+  m_PrefabInstance: {fileID: 935490703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2098100823
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14510,6 +14598,12 @@ PrefabInstance:
       propertyPath: audioPick
       value: 
       objectReference: {fileID: 8300000, guid: ec1b86a70463ef847abb7efbbe99198e, type: 3}
+    - target: {fileID: 4885878817419864325, guid: ebb526b6aad919743a310fef442d9f2e,
+        type: 3}
+      propertyPath: weapongConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 5ef24a4a32b666744b73210aa13f6adc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb526b6aad919743a310fef442d9f2e, type: 3}
 --- !u!1001 &2851828653769388083
@@ -14578,6 +14672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2851828653657507996, guid: 60a7518a0a4388146adec100eeb37ff8,
+        type: 3}
+      propertyPath: navMeshSteeringSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60a7518a0a4388146adec100eeb37ff8, type: 3}

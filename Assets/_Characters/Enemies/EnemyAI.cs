@@ -7,36 +7,69 @@ using RPG.Core;
 namespace RPG.Character
 {
 	[RequireComponent(typeof(WeaponSystem))]
+	[RequireComponent(typeof(Character))]
 	public class EnemyAI : MonoBehaviour
 	{
 
 
 
 
-		[SerializeField] float chaseWeapong = 2f;
+		[SerializeField] float chaseRadius = 2f;
+
+		public float distanceToPlayer;
+		Character character;
 		float CurrentWeapongRange = 1f;
 		WeaponSystem weaponSystem;
 		PlayerControl player = null;
-		bool isAttacking = false;
+
+		enum State { idle,attacking,chasing,patrolling}
+		State state = State.idle;
+		
 
 
 
 		private void Start()
 		{
 			player = FindObjectOfType<PlayerControl>();
-			weaponSystem = GetComponent<WeaponSystem>();	
+			weaponSystem = GetComponent<WeaponSystem>();
+			character = GetComponent<Character>();
 		}
 		private void Update()
 		{
 
-			float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+			distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 			CurrentWeapongRange = weaponSystem.GetCurrentWeapongConfig().MaxAttackRange;
+			if(distanceToPlayer > chaseRadius && state != State.patrolling)
+			{
+				StopAllCoroutines();
+				state = State.patrolling;
+				//resume patrol
+			}
+			if(distanceToPlayer <= chaseRadius && state != State.chasing)
+			{
+				StopAllCoroutines();
+				StartCoroutine(ChasePLayer());
+			}
+			if(distanceToPlayer <= CurrentWeapongRange && state!=State.attacking)
+			{
+				StopAllCoroutines();
+				state = State.attacking;
+			}
 
 		}
 
 
 	
-
+		IEnumerator ChasePLayer()
+		{
+			state = State.chasing;
+			while(distanceToPlayer >= CurrentWeapongRange)
+			{
+				character.SetDestination(player.transform.position);
+				yield return new WaitForEndOfFrame();
+			}
+			
+		}
 
 
 		void OnDrawGizmos()
@@ -45,7 +78,7 @@ namespace RPG.Character
 			Gizmos.color = Color.red;
 			Gizmos.DrawWireSphere(transform.position, CurrentWeapongRange);
 			Gizmos.color = Color.blue;
-			
+			Gizmos.DrawWireSphere(transform.position, chaseRadius);
 		}
 
 	
