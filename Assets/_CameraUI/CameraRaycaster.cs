@@ -21,7 +21,7 @@ namespace RPG.CameraUI
 		public delegate void OnMouseOverTerrain(Vector3 destination); // declare new delegate type
 		public event OnMouseOverTerrain OnMouseOverPotetiallWalkable;
 
-		public delegate void OnMouseOverEnemy(Enemy enemy); // declare new delegate type
+		public delegate void OnMouseOverEnemy(EnemyAI enemy); // declare new delegate type
 		public event OnMouseOverEnemy onMouseOverEnemy;
 
 
@@ -60,7 +60,7 @@ namespace RPG.CameraUI
 			Physics.Raycast(ray, out hitInfo, maxRaycastDepth);
 			var gameObjectHit = hitInfo.collider.gameObject;
 	
-			var enemyHit = gameObjectHit.GetComponent<Enemy>();
+			var enemyHit = gameObjectHit.GetComponent<EnemyAI>();
 			if(enemyHit)
 			{
 			

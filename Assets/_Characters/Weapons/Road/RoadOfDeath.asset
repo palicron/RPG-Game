@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e9410408b50ba4b92aab6dea33c422, type: 3}
   m_Name: RoadOfDeath
   m_EditorClassIdentifier: 
-  gripTrasform: {fileID: 0}
-  weaponPrefab: {fileID: 0}
-  atttackAnimation: {fileID: 0}
-  minTimeBetween: 0.5
-  maxAttackRange: 2
+  gripTrasform: {fileID: 6127352559101137352, guid: ba9af8130dc85c84593d823a3198bed7,
+    type: 3}
+  weaponPrefab: {fileID: 751110059343655651, guid: 064f68a95c857914084ab360e968e14c,
+    type: 3}
+  atttackAnimation: {fileID: 7400000, guid: 27eda9f3f990c6840a532a06a17f6e15, type: 3}
+  minTimeBetween: 0.7
+  maxAttackRange: 3
   additionalDamage: 10

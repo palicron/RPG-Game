@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-using RPG.CameraUI; //TODO consider RE-write
+using RPG.CameraUI; 
 
 namespace RPG.Character
 {
@@ -10,14 +10,9 @@ namespace RPG.Character
 
 		CameraRaycaster cameraRaycaster;
 		Character charater;
-		Enemy CurrentEnemy = null;
+		EnemyAI CurrentEnemy = null;
 		SpecialAbilities specialAbilitys;
 		WeaponSystem weaponSystem;
-
-
-
-
-
 
 		private void Start()
 		{
@@ -36,13 +31,13 @@ namespace RPG.Character
 
 		void OnMouseOverPotencialWalkable(Vector3 destination)
 		{
-			if(Input.GetMouseButton(0))
+			if (Input.GetMouseButton(0))
 			{
 				charater.SetDestination(destination);
 			}
 		}
 
-		void OnMouseOverEnemy(Enemy enemy)
+		void OnMouseOverEnemy(EnemyAI enemy)
 		{
 			CurrentEnemy = enemy;
 			if (Input.GetMouseButtonDown(0) && IsTargetInrange(enemy.gameObject))
@@ -67,7 +62,7 @@ namespace RPG.Character
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
 			{
-			   specialAbilitys.AttempotsSpecialAbility(1);
+				specialAbilitys.AttempotsSpecialAbility(1);
 
 			}
 			else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -75,8 +70,6 @@ namespace RPG.Character
 				specialAbilitys.AttempotsSpecialAbility(2);
 			}
 		}
-
-
 
 		private bool IsTargetInrange(GameObject target)
 		{

@@ -26,7 +26,6 @@ namespace RPG.Character
 		[Header("Movement Properties")]
 		[SerializeField] float MovingTurnSpeed = 360;
 		[SerializeField] float StationaryTurnSpeed = 180;
-		[SerializeField] float RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
 		[SerializeField] float moveSpeedMultiplier = 0.7f;
 		[SerializeField] float moveThresHold = 1f;
 		[SerializeField] float stopingDistance = 1f;
