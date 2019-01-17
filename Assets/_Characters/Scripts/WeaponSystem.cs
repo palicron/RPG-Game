@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine;
 using System;
@@ -9,10 +8,8 @@ namespace RPG.Character
 
 	public class WeaponSystem : MonoBehaviour
 	{
-
 		const string ATTACK_TRIGGER = "Attack";
 		const string DEFAULT_ATTACK = "DEFAULT ATTACK";
-
 		[SerializeField] float baseDamage = 10f;
 		[Range(0f, 1.0f)] [SerializeField] float criticalHitChance = 0.1f;
 		[SerializeField] float criticalHitMultiplier = 1.25f;
@@ -24,17 +21,42 @@ namespace RPG.Character
 		Character character;
 		GameObject target;
 		GameObject weapongObject;
+		HealthSystem healthsystem;
 		float lastHittime = 0;
-		// Start is called before the first frame update
+	
 		void Start()
 		{
 			animator = GetComponent<Animator>();
 			character = GetComponent<Character>();
 			animatorOverrideController = character.GetOverDriveController();
 			PutWeaponInHand(currentWeaponConfig);
+			healthsystem = GetComponent<HealthSystem>();
 		}
 
+		private void Update()
+		{
+			bool targetIsDead ;
+			bool targetIsOutOfRange ;
+			float characterHealt = healthsystem.healthAsPercentage;
+			bool CharacterIsDead = (characterHealt <= Mathf.Epsilon);
+			if (target == null)
+			{
+				targetIsDead = false;
+				targetIsOutOfRange = false;
+			}
+			else
+			{
+				
+				targetIsDead = target.GetComponent<HealthSystem>().healthAsPercentage <= Mathf.Epsilon;
+			    targetIsOutOfRange = Vector3.Distance(transform.position, target.transform.position) > currentWeaponConfig.MaxAttackRange;
+				
+			}
 
+			if(CharacterIsDead || targetIsDead || targetIsOutOfRange)
+			{
+				StopAllCoroutines();
+			}
+		}
 		public void PutWeaponInHand(WeaponConfig weapongConfig)
 		{
 			currentWeaponConfig = weapongConfig;
@@ -62,14 +84,14 @@ namespace RPG.Character
 
 		IEnumerator AttackTargetReapeatedly()
 		{
-			bool attackrStillAlive = GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
+			bool attackrStillAlive = healthsystem.healthAsPercentage > Mathf.Epsilon;
 			bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
-			while(attackrStillAlive && targetStillAlive)
+			while (attackrStillAlive && targetStillAlive)
 			{
 				float weaponhitPeriod = currentWeaponConfig.MinTimeBetween;
 				float timeToWait = weaponhitPeriod * character.GetAnimSpeedMultiplier();
 				bool isTimeToHitAgain = Time.time - lastHittime > timeToWait;
-				if(isTimeToHitAgain)
+				if (isTimeToHitAgain)
 				{
 					AttackTargetOnece();
 					lastHittime = Time.time;
@@ -95,7 +117,7 @@ namespace RPG.Character
 		}
 		private void SetAttackAnimation()
 		{
-			if(!character.GetOverDriveController())
+			if (!character.GetOverDriveController())
 			{
 				Debug.Break();
 				Debug.LogAssertion("no animator overdrive se in " + gameObject);
