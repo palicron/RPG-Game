@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine;
+using System;
 
 namespace RPG.Character
 {
@@ -55,12 +56,50 @@ namespace RPG.Character
 		public void AttackTarget(GameObject targetToattack)
 		{
 			target = targetToattack;
-			print("attacking" + target);
-			//TODO use a reper attac corrutine
+
+			StartCoroutine(AttackTargetReapeatedly());
+		}
+
+		IEnumerator AttackTargetReapeatedly()
+		{
+			bool attackrStillAlive = GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
+			bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
+			while(attackrStillAlive && targetStillAlive)
+			{
+				float weaponhitPeriod = currentWeaponConfig.MinTimeBetween;
+				float timeToWait = weaponhitPeriod * character.GetAnimSpeedMultiplier();
+				bool isTimeToHitAgain = Time.time - lastHittime > timeToWait;
+				if(isTimeToHitAgain)
+				{
+					AttackTargetOnece();
+					lastHittime = Time.time;
+				}
+				yield return new WaitForSeconds(timeToWait);
+			}
+		}
+
+		private void AttackTargetOnece()
+		{
+			transform.LookAt(target.transform.position);
+			animator.SetTrigger(ATTACK_TRIGGER);
+			float damageDelay = 1f; //TODO get the weapon
+			SetAttackAnimation();
+			StartCoroutine(DamageAdterDealy(damageDelay));
+		}
+
+		IEnumerator DamageAdterDealy(float damageDelay)
+		{
+			yield return new WaitForSecondsRealtime(damageDelay);
+
+			target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
 		}
 		private void SetAttackAnimation()
 		{
-
+			if(!character.GetOverDriveController())
+			{
+				Debug.Break();
+				Debug.LogAssertion("no animator overdrive se in " + gameObject);
+			}
 			animator.runtimeAnimatorController = animatorOverrideController;
 			animatorOverrideController[DEFAULT_ATTACK] = currentWeaponConfig.getAnimClip();
 		}

@@ -178,6 +178,10 @@ namespace RPG.Character
 		{
 			return aniamtorOverdriveControler;
 		}
+		public float GetAnimSpeedMultiplier()
+		{
+			return animator.speed;
+		}
 	}
 
 }

@@ -71,7 +71,13 @@ namespace RPG.Character
 			}
 			
 		}
+	     IEnumerator Attack()
+		{
+			state = State.attacking;
+			weaponSystem.AttackTarget(player.gameObject);
+			yield return new WaitForEndOfFrame();
 
+		}
 		IEnumerator Patrol()
 		{
 			state = State.patrolling;
