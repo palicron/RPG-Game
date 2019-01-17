@@ -3964,9 +3964,9 @@ MonoBehaviour:
   maxHealhPoints: 100
   healtBar: {fileID: 0}
   DamgeSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: ca2b7adb33642144bba948049c70ca69, type: 3}
   DeathSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 2c0c38d773ac2774498abf30d540e53f, type: 3}
   deathVanishSeconds: 2
   currentHelhPoints: 100
 --- !u!114 &1064282305
@@ -9963,36 +9963,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c434ed1e07fa2d439941d7e00cbb897, type: 3}
---- !u!1 &2018845409 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1361448772489748, guid: caa42664b8720f841b8211322a81670e,
-    type: 3}
-  m_PrefabInstance: {fileID: 935490703}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2018845414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018845409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e515a41e77399e4db562a94e4d77a5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseDamage: 10
-  criticalHitChance: 0.1
-  criticalHitMultiplier: 1.25
-  critParticle: {fileID: 2051481860}
-  currentWeaponConfig: {fileID: 11400000, guid: b51ae91de6bf15b49a7a1bda4d0efa39,
-    type: 2}
---- !u!198 &2051481860 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1509797159, guid: caa42664b8720f841b8211322a81670e,
-    type: 3}
-  m_PrefabInstance: {fileID: 935490703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2098100823
 RectTransform:
   m_ObjectHideFlags: 0
