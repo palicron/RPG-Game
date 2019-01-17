@@ -175,6 +175,10 @@ namespace RPG.Character
 			isAlive = false;
 		}
 
+		public AnimatorOverrideController GetOverDriveController()
+		{
+			return aniamtorOverdriveControler;
+		}
 	}
 
 }

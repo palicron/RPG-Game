@@ -17,7 +17,7 @@ namespace RPG.Character
 		[SerializeField] AudioClip[] DeathSounds;
 		[SerializeField] float deathVanishSeconds = 2f;
 
-		float currentHelhPoints = 100f;
+		public float currentHelhPoints = 100f;
 
 		Animator animator;
 		AudioSource audioSource;

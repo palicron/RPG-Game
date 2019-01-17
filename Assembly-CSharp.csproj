@@ -72,6 +72,7 @@
     <Compile Include="Assets\_Characters\Scripts\DominnannHand.cs" />
     <Compile Include="Assets\_Characters\Scripts\HealthSystem.cs" />
     <Compile Include="Assets\_Characters\Scripts\SpecialAbilities.cs" />
+    <Compile Include="Assets\_Characters\Scripts\WeaponSystem.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\AbilityBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area of Effect\AreaOfEffectBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Area of Effect\AreaOfEffectConfig.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelftHealBehavior.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\Self Heal\SelftHealConfig.cs" />
     <Compile Include="Assets\_Characters\Special Abilities\SpecialAbilityConfig.cs" />
-    <Compile Include="Assets\_Characters\Weapons\Weapon.cs" />
+    <Compile Include="Assets\_Characters\Weapons\WeaponConfig.cs" />
     <Compile Include="Assets\_Characters\Weapons\WeaponPickUpPoint.cs" />
     <Compile Include="Assets\_Core\AudioTrigger.cs" />
     <Compile Include="Assets\_Core\SpinMe.cs" />
