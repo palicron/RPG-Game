@@ -14,6 +14,7 @@ namespace RPG.Character
 			target.GetComponent<HealthSystem>().TakeDamage( (config as PowerAttackConfig).GetExtraDamage());
 			PlayParticalEffect(transform.position,true);
 			PlayAbilitySound();
+			PlayAbilityAnimation();
 		}
 	
 

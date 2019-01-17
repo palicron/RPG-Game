@@ -20,6 +20,7 @@ public class SelftHealBehavior : AbilityBehavior
 			playerHealth.Heal((config as SelftHealConfig).GetExtraHeal());
 			PlayAbilitySound();
 			PlayParticalEffect(transform.position,true);
+			PlayAbilityAnimation();
 		}
 
 

@@ -6,6 +6,8 @@ namespace RPG.Character
 
 	public abstract class AbilityBehavior : MonoBehaviour
 	{
+		const string ATTACK_TRIGGER = "Attack";
+		const string DEFAULT_ATTACK_STATE = "DEFAULT ATTACK";
 
 		protected SpecialAbilityConfig config;
 		const float PARTICLE_CLEAN_UP_DATE = 10f;
@@ -33,6 +35,17 @@ namespace RPG.Character
 			var abilitySound = config.GetAudioCLip(); //TODO randon clip
 			var audioSource = GetComponent<AudioSource>();
 			audioSource.PlayOneShot(abilitySound);
+		}
+
+		protected void PlayAbilityAnimation()
+		{
+			var animatorOverDriveController = GetComponent<Character>().GetOverDriveController();
+			var animator = GetComponent<Animator>();
+			animator.runtimeAnimatorController = animatorOverDriveController;
+			animatorOverDriveController[DEFAULT_ATTACK_STATE] = config.GetAbilityAnimation();
+			animator.SetTrigger(ATTACK_TRIGGER);
+
+
 		}
 		IEnumerator DestroyParticleAfterWhenFInish(GameObject particlePrefab)
 		{
