@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using RPG.Core;
+using System;
 
 namespace RPG.Character
 {
@@ -15,13 +16,14 @@ namespace RPG.Character
 
 
 		[SerializeField] float chaseRadius = 2f;
-
+		[SerializeField] WayPopintContainer patrolPath;
+		[SerializeField] float wayPointTolerance = 1f;
 		public float distanceToPlayer;
 		Character character;
 		float CurrentWeapongRange = 1f;
 		WeaponSystem weaponSystem;
 		PlayerControl player = null;
-
+		int nextWaypoint = 0;
 		enum State { idle,attacking,chasing,patrolling}
 		State state = State.idle;
 		
@@ -42,8 +44,7 @@ namespace RPG.Character
 			if(distanceToPlayer > chaseRadius && state != State.patrolling)
 			{
 				StopAllCoroutines();
-				state = State.patrolling;
-				//resume patrol
+				StartCoroutine(Patrol());
 			}
 			if(distanceToPlayer <= chaseRadius && state != State.chasing)
 			{
@@ -71,6 +72,28 @@ namespace RPG.Character
 			
 		}
 
+		IEnumerator Patrol()
+		{
+			state = State.patrolling;
+			while(true)
+			{
+				Vector3 nextWayPoint = patrolPath.transform.GetChild(nextWaypoint).position;
+				character.SetDestination(nextWayPoint);
+				CycleWaypointWhentClose(nextWayPoint);
+				yield return new WaitForSeconds(0.5f);
+
+			}
+		
+		}
+
+		private void CycleWaypointWhentClose(Vector3 nextWayPoint)
+		{
+			if(Vector3.Distance(transform.position, nextWayPoint)<=wayPointTolerance)
+			{
+				nextWaypoint = (nextWaypoint + 1) % patrolPath.transform.childCount;
+			}
+			
+		}
 
 		void OnDrawGizmos()
 		{
