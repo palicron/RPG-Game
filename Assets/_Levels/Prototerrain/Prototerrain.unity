@@ -10022,6 +10022,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 308725382, guid: 35b38ddffe70ed04b8a2418d055c3a4f, type: 3}
+      propertyPath: capsulColliderRadius
+      value: 0.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35b38ddffe70ed04b8a2418d055c3a4f, type: 3}
 --- !u!224 &2098100823
@@ -14904,6 +14908,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1944538977, guid: e7990c030d713ba44ba266111e0aa7a9, type: 3}
+      propertyPath: capsulColliderRadius
+      value: 0.45
+      objectReference: {fileID: 0}
     - target: {fileID: 1944538975, guid: e7990c030d713ba44ba266111e0aa7a9, type: 3}
       propertyPath: patrolPath
       value: 
@@ -15079,6 +15087,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5827865882589157018, guid: dc29983f912bc74458b6c5d9a6a99e3b,
+        type: 3}
+      propertyPath: capsulColliderRadius
+      value: 0.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc29983f912bc74458b6c5d9a6a99e3b, type: 3}
 --- !u!1001 &6776224830739944408
@@ -15167,6 +15180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: animatorForwarCap
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3104342480353070914, guid: 8dc3515753d51054d9eb4a79ce3d3000,
+        type: 3}
+      propertyPath: capsulColliderRadius
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1492222269452888093, guid: 8dc3515753d51054d9eb4a79ce3d3000,
         type: 3}
