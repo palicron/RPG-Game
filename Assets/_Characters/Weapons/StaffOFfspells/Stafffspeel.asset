@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7e9410408b50ba4b92aab6dea33c422, type: 3}
-  m_Name: RoadOfDeath
+  m_Name: Stafffspeel
   m_EditorClassIdentifier: 
   gripTrasform: {fileID: 6127352559101137352, guid: ba9af8130dc85c84593d823a3198bed7,
     type: 3}
   weaponPrefab: {fileID: 751110059343655651, guid: 064f68a95c857914084ab360e968e14c,
     type: 3}
-  atttackAnimation: {fileID: 7400000, guid: 27eda9f3f990c6840a532a06a17f6e15, type: 3}
-  minTimeBetween: 0.7
-  maxAttackRange: 3
-  additionalDamage: 10
+  atttackAnimation: {fileID: 7400000, guid: 201137be1f58a1d4a891146f38656b83, type: 3}
+  minTimeBetween: 1
+  maxAttackRange: 6
+  additionalDamage: 15
+  damageDelay: 0.88
