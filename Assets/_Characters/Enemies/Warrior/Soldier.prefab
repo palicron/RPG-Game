@@ -1916,7 +1916,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944538973}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000028461216}
+  m_LocalRotation: {x: 0, y: 1, z: -0, w: -0.0000001872535}
   m_LocalPosition: {x: 32.73, y: 23.67, z: -38.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1941,6 +1941,7 @@ MonoBehaviour:
   aniamtorOverdriveControler: {fileID: 22100000, guid: 1782569ca9b91a749a56e6887639a77e,
     type: 2}
   characterAvatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  animatorForwarCap: 1
   audioSourceSpatingBlend: 0.5
   capsulColliderCentar: {x: 0, y: 0.9, z: 0}
   capsulColliderRadius: 0.3
@@ -2000,7 +2001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e515a41e77399e4db562a94e4d77a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 17.9
+  baseDamage: 23.8
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   critParticle: {fileID: 0}

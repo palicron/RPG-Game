@@ -13,6 +13,7 @@ namespace RPG.Character
 		[SerializeField] RuntimeAnimatorController animatorController;
 		[SerializeField] AnimatorOverrideController aniamtorOverdriveControler;
 		[SerializeField] Avatar characterAvatar;
+		[SerializeField] [Range(.1f, 1f)] float animatorForwarCap =1f;
 
 		[Header("Audio Setup")]
 		[SerializeField] float audioSourceSpatingBlend = 0.5f;
@@ -109,6 +110,7 @@ namespace RPG.Character
 			move = Vector3.ProjectOnPlane(move, m_GroundNormal);
 			m_TurnAmount = Mathf.Atan2(move.x, move.z);
 			m_ForwardAmount = move.z;
+			m_ForwardAmount =Mathf.Clamp(m_ForwardAmount, 0.1f, animatorForwarCap);
 			ApplyExtraTurnRotation();
 			UpdateAnimator();
 		}

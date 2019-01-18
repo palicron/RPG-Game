@@ -21,7 +21,8 @@ namespace RPG.Character
 		Character character;
 		GameObject target;
 		GameObject weapongObject;
-		HealthSystem healthsystem;
+		[SerializeField] HealthSystem healthsystem;
+
 		float lastHittime = 0;
 	
 		void Start()
@@ -37,7 +38,10 @@ namespace RPG.Character
 		{
 			bool targetIsDead ;
 			bool targetIsOutOfRange ;
+			
 			float characterHealt = healthsystem.healthAsPercentage;
+			
+			
 			bool CharacterIsDead = (characterHealt <= Mathf.Epsilon);
 			if (target == null)
 			{
