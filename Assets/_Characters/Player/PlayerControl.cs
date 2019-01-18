@@ -39,7 +39,8 @@ namespace RPG.Character
 		{
 			if (Input.GetMouseButton(0))
 			{
-				StopAllCoroutines();
+				//StopAllCoroutines();
+				weaponSystem.StopAttacking();
 				charater.SetDestination(destination);
 			}
 		}

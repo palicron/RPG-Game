@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e9410408b50ba4b92aab6dea33c422, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: 
-  gripTrasform: {fileID: 0}
-  weaponPrefab: {fileID: 0}
-  atttackAnimation: {fileID: 0}
-  minTimeBetween: 0
-  maxAttackRange: 2
-  additionalDamage: 10
+  gripTrasform: {fileID: 4777072489168597008, guid: 9278a61215870bd48af030368013f30d,
+    type: 3}
+  weaponPrefab: {fileID: 1556053050149882446, guid: 37b0d4bbfb520ef4ea96841cef351363,
+    type: 3}
+  atttackAnimation: {fileID: 7400000, guid: c81a2f8176a9f014c87062f6b125755b, type: 3}
+  minTimeBetween: 1
+  maxAttackRange: 1.5
+  additionalDamage: 6
   damageDelay: 0.5

@@ -164,6 +164,7 @@ namespace RPG.Character
 
 		public void StopAttacking()
 		{
+			animator.StopPlayback();
 			StopAllCoroutines();
 		}
 
