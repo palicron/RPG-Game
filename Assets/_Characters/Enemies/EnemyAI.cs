@@ -24,9 +24,9 @@ namespace RPG.Character
 		WeaponSystem weaponSystem;
 		PlayerControl player = null;
 		int nextWaypoint = 0;
-		enum State { idle,attacking,chasing,patrolling}
+		enum State { idle, attacking, chasing, patrolling }
 		State state = State.idle;
-		
+
 
 
 
@@ -41,20 +41,25 @@ namespace RPG.Character
 
 			distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 			CurrentWeapongRange = weaponSystem.GetCurrentWeapongConfig().MaxAttackRange;
-			if(distanceToPlayer > chaseRadius && state != State.patrolling)
+
+			bool inWeaponRange = distanceToPlayer <= CurrentWeapongRange;
+			bool inCHaseRange = distanceToPlayer > CurrentWeapongRange && distanceToPlayer <= chaseRadius;
+			bool outsideCHaseRing = distanceToPlayer > chaseRadius;
+			if (outsideCHaseRing && state != State.patrolling)
 			{
 
 				StopAllCoroutines();
+				weaponSystem.StopAttacking();
 				StartCoroutine(Patrol());
 			}
-			if(distanceToPlayer <= chaseRadius && distanceToPlayer>CurrentWeapongRange && state != State.chasing )
+			if (inCHaseRange && state != State.chasing)
 			{
-				
+
 				StopAllCoroutines();
 				weaponSystem.StopAttacking();
 				StartCoroutine(ChasePLayer());
 			}
-			if(distanceToPlayer <= CurrentWeapongRange && state!=State.attacking)
+			if (inWeaponRange && state != State.attacking)
 			{
 				StopAllCoroutines();
 				state = State.attacking;
@@ -64,23 +69,23 @@ namespace RPG.Character
 		}
 
 
-	
+
 		IEnumerator ChasePLayer()
 		{
 			state = State.chasing;
-			while(distanceToPlayer >= CurrentWeapongRange)
+			while (distanceToPlayer >= CurrentWeapongRange)
 			{
 				character.SetDestination(player.transform.position);
 				yield return new WaitForEndOfFrame();
 			}
-			
+
 		}
-	  
+
 
 		IEnumerator Patrol()
 		{
 			state = State.patrolling;
-			while(patrolPath!=null)
+			while (patrolPath != null)
 			{
 				Vector3 nextWayPoint = patrolPath.transform.GetChild(nextWaypoint).position;
 				character.SetDestination(nextWayPoint);
@@ -88,16 +93,16 @@ namespace RPG.Character
 				yield return new WaitForSeconds(0.5f);
 
 			}
-		
+
 		}
 
 		private void CycleWaypointWhentClose(Vector3 nextWayPoint)
 		{
-			if(Vector3.Distance(transform.position, nextWayPoint)<=wayPointTolerance)
+			if (Vector3.Distance(transform.position, nextWayPoint) <= wayPointTolerance)
 			{
 				nextWaypoint = (nextWaypoint + 1) % patrolPath.transform.childCount;
 			}
-			
+
 		}
 
 		void OnDrawGizmos()
@@ -109,6 +114,6 @@ namespace RPG.Character
 			Gizmos.DrawWireSphere(transform.position, chaseRadius);
 		}
 
-	
+
 	}
 }
