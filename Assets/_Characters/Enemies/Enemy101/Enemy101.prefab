@@ -87,14 +87,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fe1605f4e3050468ad1662a30ab523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealhPoints: 100
+  maxHealhPoints: 289
   healtBar: {fileID: 2782169483781891046}
   DamgeSounds:
   - {fileID: 8300000, guid: ca2b7adb33642144bba948049c70ca69, type: 3}
   DeathSounds:
   - {fileID: 8300000, guid: 2c0c38d773ac2774498abf30d540e53f, type: 3}
   deathVanishSeconds: 2
-  currentHelhPoints: 100
+  currentHelhPoints: 289
 --- !u!114 &1064282305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,11 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e515a41e77399e4db562a94e4d77a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  baseDamage: 12
   criticalHitChance: 0.1
   criticalHitMultiplier: 1.25
   critParticle: {fileID: 0}
-  currentWeaponConfig: {fileID: 11400000, guid: 5ef24a4a32b666744b73210aa13f6adc,
+  currentWeaponConfig: {fileID: 11400000, guid: a81e19af34e1a6b4b8f42aeb8bdd44c4,
     type: 2}
 --- !u!114 &2851828654115774473
 MonoBehaviour:
