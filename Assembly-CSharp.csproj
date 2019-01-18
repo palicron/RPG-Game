@@ -65,7 +65,6 @@
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
     <Compile Include="Assets\_Characters\Enemies\EnemyAI.cs" />
     <Compile Include="Assets\_Characters\Enemies\FaceCamera.cs" />
-    <Compile Include="Assets\_Characters\Enemies\Projectile.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerControl.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
     <Compile Include="Assets\_Characters\Scripts\Character.cs" />
