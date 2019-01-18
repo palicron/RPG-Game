@@ -67,7 +67,7 @@ namespace RPG.Character
 
 		IEnumerator KillCharacter()
 		{
-			StopAllCoroutines();
+			
 			characterMovement.Kill();
 			animator.SetTrigger(DEATH_TRIGGER);
 			var playerComponet = GetComponent<PlayerControl>();

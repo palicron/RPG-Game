@@ -47,7 +47,7 @@ namespace RPG.Character
 
 		private void OnTriggerEnter(Collider other)
 		{
-			var weaponSystem = FindObjectOfType<WeaponSystem>();
+			var weaponSystem = other.gameObject.GetComponent<WeaponSystem>();
 			weaponSystem.PutWeaponInHand(weapongConfig);
 			audioSource.PlayOneShot(audioPick);
 		}

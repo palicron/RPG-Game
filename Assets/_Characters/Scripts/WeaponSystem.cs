@@ -104,7 +104,7 @@ namespace RPG.Character
 		{
 			transform.LookAt(target.transform.position);
 			animator.SetTrigger(ATTACK_TRIGGER);
-			float damageDelay = 1f; //TODO get the weapon
+			float damageDelay = currentWeaponConfig.getDamaDelay(); //TODO get the weapon
 			SetAttackAnimation();
 			StartCoroutine(DamageAdterDealy(damageDelay));
 		}
@@ -112,7 +112,7 @@ namespace RPG.Character
 		IEnumerator DamageAdterDealy(float damageDelay)
 		{
 			yield return new WaitForSecondsRealtime(damageDelay);
-
+			if(target!=null)
 			target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
 		}
 		private void SetAttackAnimation()
