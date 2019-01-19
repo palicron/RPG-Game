@@ -11,6 +11,7 @@ namespace RPG.Character
 		EnemyAI CurrentEnemy = null;
 		SpecialAbilities specialAbilitys;
 		WeaponSystem weaponSystem;
+		
 
 		void Start()
 		{
@@ -33,6 +34,7 @@ namespace RPG.Character
 			var cameraRaycaster = FindObjectOfType<CameraRaycaster>();
 			cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
 			cameraRaycaster.OnMouseOverPotetiallWalkable += OnMouseOverPotencialWalkable;
+			cameraRaycaster.onMouseOverDialogue += OnMouseOverDialogue;
 		}
 
 		void OnMouseOverPotencialWalkable(Vector3 destination)
@@ -66,7 +68,18 @@ namespace RPG.Character
 			}
 		}
 
-
+		private void OnMouseOverDialogue(DialogueSystem dialogue)
+		{
+		
+			if (Input.GetMouseButtonDown(0) && IsTargetInRangeOfDialogue(dialogue))
+			{
+				dialogue.PlayDialogue();
+			}
+			else if (Input.GetMouseButtonDown(0) && !IsTargetInRangeOfDialogue(dialogue))
+			{
+				StartCoroutine(moveToDialogue(dialogue.gameObject));
+			}
+		}
 		private void ScanForAbilityKeyPress()
 		{
 			if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -85,6 +98,13 @@ namespace RPG.Character
 			float disttanceTotarget = (target.transform.position - transform.position).magnitude;
 
 			return disttanceTotarget <= weaponSystem.GetCurrentWeapongConfig().MaxAttackRange;
+
+		}
+		private bool IsTargetInRangeOfDialogue(DialogueSystem target)
+		{
+			float disttanceTotarget = (target.transform.position - transform.position).magnitude;
+
+			return disttanceTotarget <= target.getDialogueRange();
 
 		}
 
@@ -108,7 +128,11 @@ namespace RPG.Character
 			yield return StartCoroutine(MoveToTarget(target));
 			specialAbilitys.AttempotsSpecialAbility(0, CurrentEnemy.gameObject);
 		}
-
+		IEnumerator moveToDialogue(GameObject target)
+		{
+			yield return StartCoroutine(MoveToTarget(target));
+			target.GetComponent<DialogueSystem>().PlayDialogue();
+		}
 
 
 	}
