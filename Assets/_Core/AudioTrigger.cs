@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using RPG.Character;
 namespace RPG.Core
 {
 
@@ -12,21 +12,25 @@ namespace RPG.Core
 		[SerializeField] float triggerRadius = 5f;
 		[SerializeField] bool isOneTimeOnly = true;
 
-		[SerializeField] bool hasPlayed = false;
+		bool hasPlayed = false;
 		AudioSource audioSource;
-
+		GameObject player;
 		void Start()
 		{
 			audioSource = gameObject.AddComponent<AudioSource>();
 			audioSource.playOnAwake = false;
 			audioSource.clip = clip;
-
-			SphereCollider sphereCollider = gameObject.AddComponent<SphereCollider>();
-			sphereCollider.isTrigger = true;
-			sphereCollider.radius = triggerRadius;
-			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+			player = FindObjectOfType<PlayerControl>().gameObject;
 		}
 
+		private void Update()
+		{
+			if(!hasPlayed  && Vector3.Distance(player.transform.position,transform.position)<=triggerRadius)
+			{
+				RequestPlayAudioClip();
+			}
+		
+		}
 		void OnTriggerEnter(Collider other)
 		{
 			if (other.gameObject.layer == layerFilter)
