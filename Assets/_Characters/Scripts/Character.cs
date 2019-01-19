@@ -117,6 +117,7 @@ namespace RPG.Character
 
 		public void SetDestination(Vector3 worldPos)
 		{
+			if(isAlive)
 			agent.SetDestination(worldPos);
 		}
 

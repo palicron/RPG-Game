@@ -71,12 +71,13 @@ namespace RPG.Character
 			characterMovement.Kill();
 			animator.SetTrigger(DEATH_TRIGGER);
 			var playerComponet = GetComponent<PlayerControl>();
+			audioSource.Stop();
+			audioSource.clip = DeathSounds[UnityEngine.Random.Range(0, DeathSounds.Length)];
+			audioSource.Play();
+			yield return new WaitForSecondsRealtime(audioSource.clip.length + 0.1f);//todo use audiclipo lenth
 			if (playerComponet && playerComponet.isActiveAndEnabled)
 			{
-				audioSource.Stop();
-				audioSource.clip = DeathSounds[UnityEngine.Random.Range(0, DeathSounds.Length)];
-				audioSource.Play();
-				yield return new WaitForSecondsRealtime(audioSource.clip.length + 0.1f);//todo use audiclipo lenth
+			
 				SceneManager.LoadSceneAsync(0);
 			}
 			else

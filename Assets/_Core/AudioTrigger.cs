@@ -33,7 +33,7 @@ namespace RPG.Core
 		}
 		void OnTriggerEnter(Collider other)
 		{
-			if (other.gameObject.layer == layerFilter)
+			if (other.gameObject.tag.Equals("Player"))
 			{
 				RequestPlayAudioClip();
 			}
