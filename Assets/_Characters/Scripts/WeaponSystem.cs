@@ -92,8 +92,9 @@ namespace RPG.Character
 			bool targetStillAlive = target.GetComponent<HealthSystem>().healthAsPercentage > Mathf.Epsilon;
 			while (attackrStillAlive && targetStillAlive)
 			{
-				float weaponhitPeriod = currentWeaponConfig.MinTimeBetween;
-				float timeToWait = weaponhitPeriod * character.GetAnimSpeedMultiplier();
+				
+				float weaponhitPeriod = currentWeaponConfig.timeBetweenAnimation / character.GetAnimSpeedMultiplier();
+				float timeToWait = weaponhitPeriod + weaponhitPeriod;
 				bool isTimeToHitAgain = Time.time - lastHittime > timeToWait;
 				if (isTimeToHitAgain)
 				{
@@ -139,16 +140,6 @@ namespace RPG.Character
 			return dominanHands[0].gameObject;
 		}
 
-		private void AttackTarget()
-		{
-
-			if (Time.time - lastHittime > currentWeaponConfig.MinTimeBetween)
-			{
-				animator.SetTrigger(ATTACK_TRIGGER); //TODO maeka const
-
-				lastHittime = Time.time;
-			}
-		}
 
 		private float CalculateDamage()
 		{

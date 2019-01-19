@@ -11,7 +11,7 @@ namespace RPG.Character
 
 		[SerializeField] GameObject weaponPrefab;
 		[SerializeField] AnimationClip atttackAnimation;
-		[SerializeField] float minTimeBetween;
+		[SerializeField] float timeBetweenAnimationCycles;
 		[SerializeField] float maxAttackRange = 2f;
 		[SerializeField] float additionalDamage = 10f;
 		[SerializeField] float damageDelay = .5f;
@@ -29,16 +29,16 @@ namespace RPG.Character
 			}
 		}
 
-		public float MinTimeBetween
+		public float timeBetweenAnimation
 		{
 			get
 			{
-				return minTimeBetween = atttackAnimation.length;
+				return  atttackAnimation.length;
 			}
 
 			set
 			{
-				minTimeBetween = value;
+				timeBetweenAnimationCycles = value;
 			}
 		}
 
