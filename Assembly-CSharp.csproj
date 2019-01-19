@@ -63,15 +63,15 @@
   <ItemGroup>
     <Compile Include="Assets\_CameraUI\CameraFollow.cs" />
     <Compile Include="Assets\_CameraUI\CameraRaycaster.cs" />
-    <Compile Include="Assets\_Characters\Enemies\EnemyAI.cs" />
     <Compile Include="Assets\_Characters\Enemies\FaceCamera.cs" />
-    <Compile Include="Assets\_Characters\Enemies\NpcAI.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerControl.cs" />
     <Compile Include="Assets\_Characters\Player\PlayerHealthBar.cs" />
     <Compile Include="Assets\_Characters\Scripts\Character.cs" />
     <Compile Include="Assets\_Characters\Scripts\DialogueSystem.cs" />
     <Compile Include="Assets\_Characters\Scripts\DominnannHand.cs" />
+    <Compile Include="Assets\_Characters\Scripts\EnemyAI.cs" />
     <Compile Include="Assets\_Characters\Scripts\HealthSystem.cs" />
+    <Compile Include="Assets\_Characters\Scripts\NpcAI.cs" />
     <Compile Include="Assets\_Characters\Scripts\SpecialAbilities.cs" />
     <Compile Include="Assets\_Characters\Scripts\WayPopintContainer.cs" />
     <Compile Include="Assets\_Characters\Scripts\WeaponSystem.cs" />

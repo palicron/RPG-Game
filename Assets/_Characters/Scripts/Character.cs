@@ -13,7 +13,7 @@ namespace RPG.Character
 		[SerializeField] RuntimeAnimatorController animatorController;
 		[SerializeField] AnimatorOverrideController aniamtorOverdriveControler;
 		[SerializeField] Avatar characterAvatar;
-		[SerializeField] [Range(.1f, 1f)] float animatorForwarCap =1f;
+		[SerializeField] [Range(0, 1f)] float animatorForwarCap =1f;
 
 		[Header("Audio Setup")]
 		[SerializeField] float audioSourceSpatingBlend = 0.5f;
@@ -79,21 +79,26 @@ namespace RPG.Character
 			agent.speed = navMeshSteeringSpeed;
 			agent.stoppingDistance = navMeshStopingDistance;
 			agent.autoBraking = true;
+
+			animator.SetFloat("Forward", 0, 0.1f, Time.deltaTime);
+
 		}
 
 	
 
 		private void Update()
 		{
-		
-		
+
+			
 			if (agent.remainingDistance>agent.stoppingDistance && isAlive)
 			{
 				Move(agent.desiredVelocity);
 			}
 			else
 			{
+				m_Rigidbody.velocity = Vector3.zero;
 				Move(Vector3.zero);
+				//animator.SetFloat("Forward", 0, 0.1f, Time.deltaTime);
 			}
 		}
 
@@ -110,7 +115,7 @@ namespace RPG.Character
 			move = Vector3.ProjectOnPlane(move, m_GroundNormal);
 			m_TurnAmount = Mathf.Atan2(move.x, move.z);
 			m_ForwardAmount = move.z;
-			m_ForwardAmount =Mathf.Clamp(m_ForwardAmount, 0.1f, animatorForwarCap);
+			m_ForwardAmount =Mathf.Clamp(m_ForwardAmount, 0f, animatorForwarCap);
 			ApplyExtraTurnRotation();
 			UpdateAnimator();
 		}
