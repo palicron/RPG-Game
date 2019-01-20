@@ -11,7 +11,8 @@ namespace RPG.Character
 		[SerializeField] WayPopintContainer patrolPath;
 		[SerializeField] float wayPointTolerance = 0.1f;
 		[SerializeField] float TalkRange = 1f;
-	
+		[SerializeField] float PatrolWaitTime = 0.5f;
+		[SerializeField] float RotationSpeed = 2f;
 
 		Character character;
 		public float distanceToPlayer;
@@ -26,19 +27,24 @@ namespace RPG.Character
 		{
 			player = FindObjectOfType<PlayerControl>();
 			character = GetComponent<Character>();
+
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
 			distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-
+			print(state);
 			bool inChaseRange =  distanceToPlayer <= chaseRadius;
 			bool inTalkRange = distanceToPlayer <= TalkRange;
-			if(!inChaseRange && state != State.patrolling)
+			if(!inChaseRange && patrolPath!=null && state != State.patrolling)
 			{
-				StopAllCoroutines();
-				StartCoroutine(Patrol());
+				
+		
+					StopAllCoroutines();
+					StartCoroutine(Patrol());
+				
+				
 			}
 			if (inChaseRange && state != State.chasing)
 			{
@@ -50,9 +56,14 @@ namespace RPG.Character
 			{
 				StopAllCoroutines();
 				state = State.talking;
-				transform.LookAt(player.transform);
+				Vector3 dir = player.transform.position - transform.position;
+				dir.y = 0;
+				Quaternion rot = Quaternion.LookRotation(dir);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rot, RotationSpeed * Time.deltaTime);
+				//transform.LookAt(player.transform);
 			
 			}
+	
 		}
 
 
@@ -77,11 +88,12 @@ namespace RPG.Character
 				Vector3 nextWayPoint = patrolPath.transform.GetChild(nextWaypoint).position;
 				character.SetDestination(nextWayPoint);
 				CycleWaypointWhentClose(nextWayPoint);
-				yield return new WaitForSeconds(0.5f);
+				yield return new WaitForSeconds(PatrolWaitTime);
 
 			}
 
 		}
+
 
 		private void CycleWaypointWhentClose(Vector3 nextWayPoint)
 		{

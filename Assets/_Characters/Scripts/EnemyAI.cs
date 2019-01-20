@@ -16,6 +16,7 @@ namespace RPG.Character
 		[SerializeField] float chaseRadius = 2f;
 		[SerializeField] WayPopintContainer patrolPath;
 		[SerializeField] float wayPointTolerance = 1f;
+		[SerializeField] float PatrolWaitTime = 0.5f;
 		public float distanceToPlayer;
 		Character character;
 		float CurrentWeapongRange = 1f;
@@ -87,7 +88,7 @@ namespace RPG.Character
 				Vector3 nextWayPoint = patrolPath.transform.GetChild(nextWaypoint).position;
 				character.SetDestination(nextWayPoint);
 				CycleWaypointWhentClose(nextWayPoint);
-				yield return new WaitForSeconds(0.5f);
+				yield return new WaitForSeconds(PatrolWaitTime);
 
 			}
 

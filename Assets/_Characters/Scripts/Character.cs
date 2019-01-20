@@ -6,23 +6,25 @@ using RPG.CameraUI;
 
 namespace RPG.Character
 {
-	[SelectionBase]	
+	[SelectionBase]
 	public class Character : MonoBehaviour
 	{
 		[Header("Animator Settings")]
+		[SerializeField] bool AddAnimator = true;
 		[SerializeField] RuntimeAnimatorController animatorController;
 		[SerializeField] AnimatorOverrideController aniamtorOverdriveControler;
 		[SerializeField] Avatar characterAvatar;
-		[SerializeField] [Range(0, 1f)] float animatorForwarCap =1f;
+		[SerializeField] [Range(0, 1f)] float animatorForwarCap = 1f;
 
 		[Header("Audio Setup")]
+		[SerializeField] bool AddSoundSource = true;
 		[SerializeField] float audioSourceSpatingBlend = 0.5f;
 
 		[Header("Colider Setup")]
 		[SerializeField] Vector3 capsulColliderCentar = new Vector3(0, 0.9f, 0);
 		[SerializeField] float capsulColliderRadius = 0.3f;
 		[SerializeField] float capsulColliderHeight = 1.88f;
-		
+
 
 		[Header("Movement Properties")]
 		[SerializeField] float MovingTurnSpeed = 360;
@@ -32,6 +34,7 @@ namespace RPG.Character
 		[SerializeField] float stopingDistance = 1f;
 
 		[Header("Navmesh Agent Setup")]
+		[SerializeField] bool AddAgent = true;
 		[SerializeField] float navMeshSteeringSpeed = 4f;
 		[SerializeField] float navMeshStopingDistance = 1.3f;
 
@@ -39,7 +42,7 @@ namespace RPG.Character
 		float m_ForwardAmount;
 		bool IsInDirectMode = false;
 		Vector3 m_GroundNormal;
-	
+
 		Animator animator;
 		Rigidbody m_Rigidbody;
 		Vector3 cuerrentDestination;
@@ -47,7 +50,7 @@ namespace RPG.Character
 		CapsuleCollider capsulCollider;
 
 		bool isAlive = true;
-	
+
 
 		private void Awake()
 		{
@@ -56,9 +59,13 @@ namespace RPG.Character
 
 		private void AddRquireComponets()
 		{
-			animator = gameObject.AddComponent<Animator>();
-			animator.runtimeAnimatorController = animatorController;
-			animator.avatar = characterAvatar;
+			if (AddAnimator)
+			{
+				animator = gameObject.AddComponent<Animator>();
+				animator.runtimeAnimatorController = animatorController;
+				animator.avatar = characterAvatar;
+			}
+
 
 			capsulCollider = gameObject.AddComponent<CapsuleCollider>();
 			capsulCollider.center = capsulColliderCentar;
@@ -68,37 +75,48 @@ namespace RPG.Character
 			m_Rigidbody = gameObject.AddComponent<Rigidbody>();
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 
-			var audioSource = gameObject.AddComponent<AudioSource>();
-			audioSource.playOnAwake = false;
-			audioSource.spatialBlend = audioSourceSpatingBlend;
+			if (AddSoundSource)
+			{
+				var audioSource = gameObject.AddComponent<AudioSource>();
+				audioSource.playOnAwake = false;
+				audioSource.spatialBlend = audioSourceSpatingBlend;
+			}
 
-			agent = gameObject.AddComponent<NavMeshAgent>();
-			agent.updateRotation = false;
-			agent.updatePosition = true;
-			agent.stoppingDistance = stopingDistance;
-			agent.speed = navMeshSteeringSpeed;
-			agent.stoppingDistance = navMeshStopingDistance;
-			agent.autoBraking = true;
+			if (AddAgent)
+			{
+				agent = gameObject.AddComponent<NavMeshAgent>();
+				agent.updateRotation = false;
+				agent.updatePosition = true;
+				agent.stoppingDistance = stopingDistance;
+				agent.speed = navMeshSteeringSpeed;
+				agent.stoppingDistance = navMeshStopingDistance;
+				agent.autoBraking = true;
+			}
 
-			animator.SetFloat("Forward", 0, 0.1f, Time.deltaTime);
+
+
 
 		}
 
-	
+
 
 		private void Update()
 		{
 
-			
-			if (agent.remainingDistance>agent.stoppingDistance && isAlive)
+
+			if (agent != null && agent.remainingDistance > agent.stoppingDistance && isAlive)
 			{
 				Move(agent.desiredVelocity);
 			}
 			else
 			{
-				m_Rigidbody.velocity = Vector3.zero;
-				Move(Vector3.zero);
-				//animator.SetFloat("Forward", 0, 0.1f, Time.deltaTime);
+				if (agent != null)
+				{
+					m_Rigidbody.velocity = Vector3.zero;
+					Move(Vector3.zero);
+				}
+
+
 			}
 		}
 
@@ -115,15 +133,15 @@ namespace RPG.Character
 			move = Vector3.ProjectOnPlane(move, m_GroundNormal);
 			m_TurnAmount = Mathf.Atan2(move.x, move.z);
 			m_ForwardAmount = move.z;
-			m_ForwardAmount =Mathf.Clamp(m_ForwardAmount, 0f, animatorForwarCap);
+			m_ForwardAmount = Mathf.Clamp(m_ForwardAmount, 0f, animatorForwarCap);
 			ApplyExtraTurnRotation();
 			UpdateAnimator();
 		}
 
 		public void SetDestination(Vector3 worldPos)
 		{
-			if(isAlive)
-			agent.SetDestination(worldPos);
+			if (isAlive && agent != null)
+				agent.SetDestination(worldPos);
 		}
 
 		void UpdateAnimator()
@@ -141,7 +159,7 @@ namespace RPG.Character
 			float turnSpeed = Mathf.Lerp(StationaryTurnSpeed, MovingTurnSpeed, m_ForwardAmount);
 			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
 		}
-	
+
 
 
 
