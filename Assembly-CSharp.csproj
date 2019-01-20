@@ -144,6 +144,7 @@
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\Water.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\WaterBase.cs" />
     <Compile Include="Assets\_World Objects\Water\Water\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\Knight\scripts\rotator.cs" />
     <None Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Resources\Shaders\DepthOfField.shader" />
     <None Include="Assets\3DGamekit\Art\Shaders\Rock.shader" />
     <None Include="Assets\3DGamekit\Art\Shaders\CollectShadowWaterCustom.shader" />
@@ -191,6 +192,7 @@
     <None Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\3DGamekit\Art\Shaders\WaterShadow.shader" />
     <None Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Editor Resources\UI\Trackball.shader" />
+    <None Include="Assets\Knight\shaders\doublesidedshader.shader" />
     <None Include="Assets\3DGamekit\Art\Shaders\AlienMetal.shader" />
     <None Include="Assets\3DGamekit\Art\Shaders\UnityStandardParticleShadow.cginc" />
     <None Include="Assets\3DGamekit\Art\Shaders\UnityStandardParticles.cginc" />
@@ -246,6 +248,12 @@
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
