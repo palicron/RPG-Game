@@ -234,6 +234,9 @@
     <None Include="Assets\3DGamekit\Art\Shaders\FrostedGlass.shader" />
     <None Include="Assets\_External Assests\Fantasy Lands\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <None Include="Assets\3DGamekit\Art\Shaders\Vegetable_CNSSS.shader" />
+    <Reference Include="Cinemachine">
+      <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -243,17 +246,14 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>C:/Users/ELGRA/Documents/RPG-Game/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
